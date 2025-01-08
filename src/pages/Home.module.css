@@ -8,7 +8,7 @@
 
 .OnBoarding1 {
     width: 100%;
-    height: 550px;
+    height: 600px;
     margin-top: 60px; 
     background-image: url('../assets/Home/jinx3.png');
     background-size: cover;
@@ -68,7 +68,7 @@
 
 .OnBoarding2 {
     width: 100%;
-    height: 550px;
+    height: 600px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -147,10 +147,11 @@
 .ScheduleContainer {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    margin-left: 60px;
+    margin-left: 120px;
+    height: 550px;
 }
 
 .MainContainer2 {
@@ -158,13 +159,14 @@
     flex-direction: column;
     max-width: 480px;
     padding: 54px 80px;
+    margin-top: 30px;
 }
 
 .TodayMatchContainer {
     background-color: #31313C;
-    width: 400px;
+    width: 380px;
     height: 120px;
-    border-radius: 20px;
+    border-radius: 40px;
     padding: 20px 20px;
 }
 
@@ -172,6 +174,7 @@
     color: #ffffff;
     font-size: 20px;
     font-weight: 700;
+    padding: 0 10px;
 }
 
 .MatchContainer {
@@ -201,7 +204,7 @@
 
 .teamName {
     color: #ffffff;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
 }
 
@@ -233,4 +236,150 @@
     color: #ffffff;
     font-weight: 700;
     font-size: 24px;
+}
+
+.OnBoarding3 {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    overflow: hidden;
+    background-image: url('../assets/Home/nocturne.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+
+.Main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 150px;
+}
+
+.TextConatiner {
+    /* flex: 1; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.RankConatainer {
+    /* flex: 1; */
+    display: flex;
+}
+
+.RankBox {
+    width: 350px;
+    height: 240;
+    background-color: #31313C;
+    border-radius: 20px;
+}
+
+.RankList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    width: 350px;
+    height: 240;
+    padding: 0px;
+    margin: 0
+}
+
+.RankInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    padding: 0 10px;
+    margin: 0;
+    border-bottom: 1px solid #151515;
+    height: 60px;
+}
+
+.RankInfo1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    padding: 0 10px;
+    margin: 0;
+    border-bottom: 1px solid #151515;
+    height: 60px;
+}
+
+.RankInfoText1 {
+    color: #C0C0C0;
+    font-size: 14px;
+    font-weight: 700;
+    width: 50px;
+    text-align: center;
+}
+.RankInfoText2 {
+    color: #C0C0C0;
+    font-size: 14px;
+    font-weight: 700;
+    width: 110px;
+    padding-left: 30px;
+}
+.RankInfoText3 {
+    color: #C0C0C0;
+    font-size: 14px;
+    font-weight: 700;
+    width: 80px;
+    text-align: center;
+}
+.RankInfoText4 {
+    color: #C0C0C0;
+    font-size: 14px;
+    font-weight: 700;
+    width: 60px;
+    text-align: center;
+}
+
+.RankText {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    width: 30px;
+    text-align: center;
+}
+
+.UpDownText {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    width: 30px;
+    text-align: center;
+}
+
+.TeamLogo {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.TeamText {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.WLText {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    width: 80px;
+    text-align: center;
+}
+
+.PointText {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    width: 60px;
+    text-align: center;
 }
