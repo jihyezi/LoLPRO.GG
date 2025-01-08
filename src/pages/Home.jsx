@@ -16,6 +16,7 @@ import DRX from "../assets/Home/DRX.png";
 import BRO from "../assets/Home/BRO.png";
 import leftArrow from "../assets/Home/leftArrow.png"
 import rightArrow from "../assets/Home/rightArrow.png"
+import Bottom from "../components/Home/Bottom";
 
 const Home = () => {
     return (
@@ -151,6 +152,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <Bottom />
         </div>
     )
 }
