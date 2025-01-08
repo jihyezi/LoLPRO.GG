@@ -1,4 +1,4 @@
-.HeaderContainer {
+.headerContainer {
     position: fixed;
     top: 0;
     right: 0;
@@ -17,7 +17,7 @@
     border-bottom: 1px solid hsla(0,0%,100%,.07);
 }
 
-.LogoContainer {
+.logoContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -30,6 +30,8 @@
 
 .logotext {
     color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .menuList {
@@ -38,6 +40,7 @@
     justify-content: space-between;
     list-style: none;
     padding: 0;
+    width: 500px;
 }
 
 .menutext {
@@ -47,6 +50,12 @@
     font-weight: 700;
     line-height: 20px;
     color: #A8A8A8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menutext[data-selected="true"] {
+    color: #ffffff;
 }
 
 .profileContainer {
