@@ -1,4 +1,4 @@
-.HomeContainer {
+.homeContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -6,7 +6,7 @@
     position: relative;
 }
 
-.OnBoarding1 {
+.onBoarding1 {
     width: 100%;
     height: 600px;
     margin-top: 60px; 
@@ -16,7 +16,7 @@
     position: relative;
 }
 
-.MainContainer {
+.wrapper {
     display: flex;
     flex-direction: column;
     max-width: 480px;
@@ -26,7 +26,7 @@
     bottom: 0;
 }
 
-.ContentContainer {
+.contentBox {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,7 +35,7 @@
     text-align: center; 
 }
 
-.Keyword {
+.title {
     color: #8E69F4;
     align-self: flex-start; 
     font-weight: 700;
@@ -43,7 +43,7 @@
     margin: 0;
 }
 
-.Content {
+.description {
     color: #ffffff;
     text-align: center;
     font-weight: 700;
@@ -51,7 +51,7 @@
     margin: 12px 0 0 0;
 }
 
-.PageButton {
+.ctaButton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +66,7 @@
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
-.OnBoarding2 {
+.onBoarding2 {
     width: 100%;
     height: 600px;
     display: flex;
@@ -76,7 +76,7 @@
     overflow: hidden;
 }
 
-.LckTeam {
+.lckTeamContainer {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -131,20 +131,20 @@
     box-sizing: border-box;
 }
 
-.teamContainer {
+.teamBox {
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.teamimg {
+.teamLogo {
     width: 80px;
     height: 90px;
     object-fit: contain;
 }
 
-.ScheduleContainer {
+.scheduleContainer {
     flex: 1;
     display: flex;
     justify-content: flex-start;
@@ -154,7 +154,7 @@
     height: 550px;
 }
 
-.MainContainer2 {
+.wrapper2 {
     display: flex;
     flex-direction: column;
     max-width: 480px;
@@ -162,7 +162,7 @@
     margin-top: 30px;
 }
 
-.TodayMatchContainer {
+.todayMatchContainer {
     background-color: #31313C;
     width: 380px;
     height: 120px;
@@ -177,7 +177,7 @@
     padding: 0 10px;
 }
 
-.MatchContainer {
+.matchBox {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -189,7 +189,7 @@
     height: 40px;
 }
 
-.MatchTeam {
+.matchTeam {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -216,7 +216,7 @@
     margin-top: 18px;
 }
 
-.timeContainer {
+.timeBox {
     width: 70px;
     height: 26px;
     background-color: #8E69F4;
@@ -252,33 +252,21 @@
     box-sizing: border-box;
 }
 
-.Main {
+.rankContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-left: 150px;
 }
 
-.TextConatiner {
-    /* flex: 1; */
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.RankConatainer {
-    /* flex: 1; */
-    display: flex;
-}
-
-.RankBox {
+.rankBox {
     width: 350px;
     height: 240;
     background-color: #31313C;
     border-radius: 20px;
 }
 
-.RankList {
+.rankList {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -289,7 +277,7 @@
     margin: 0
 }
 
-.RankInfo {
+.rankHeader {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -300,39 +288,31 @@
     height: 60px;
 }
 
-.RankInfo1 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    list-style: none;
-    padding: 0 10px;
-    margin: 0;
-    border-bottom: 1px solid #151515;
-    height: 60px;
-}
-
-.RankInfoText1 {
+.headerRank {
     color: #C0C0C0;
     font-size: 14px;
     font-weight: 700;
     width: 50px;
     text-align: center;
 }
-.RankInfoText2 {
+
+.headerTeam {
     color: #C0C0C0;
     font-size: 14px;
     font-weight: 700;
     width: 110px;
     padding-left: 30px;
 }
-.RankInfoText3 {
+
+.headerWL {
     color: #C0C0C0;
     font-size: 14px;
     font-weight: 700;
     width: 80px;
     text-align: center;
 }
-.RankInfoText4 {
+
+.headerPoints {
     color: #C0C0C0;
     font-size: 14px;
     font-weight: 700;
@@ -340,7 +320,18 @@
     text-align: center;
 }
 
-.RankText {
+.rankRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    padding: 0 10px;
+    margin: 0;
+    border-bottom: 1px solid #151515;
+    height: 60px;
+}
+
+.rankNumber {
     color: #ffffff;
     font-size: 16px;
     font-weight: 700;
@@ -348,7 +339,7 @@
     text-align: center;
 }
 
-.UpDownText {
+.rankChange {
     color: #ffffff;
     font-size: 16px;
     font-weight: 700;
@@ -356,19 +347,22 @@
     text-align: center;
 }
 
-.TeamLogo {
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
+.rankTeamBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    width: 130px;
+    margin-left: 5px;
 }
 
-.TeamText {
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
+.rankTeam {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
 
-.WLText {
+.wlRecord {
     color: #ffffff;
     font-size: 16px;
     font-weight: 700;
@@ -376,7 +370,7 @@
     text-align: center;
 }
 
-.PointText {
+.teamPoints {
     color: #ffffff;
     font-size: 16px;
     font-weight: 700;
