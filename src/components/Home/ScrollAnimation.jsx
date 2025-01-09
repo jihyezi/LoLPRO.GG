@@ -50,7 +50,7 @@ const AnimatedDiv = ({ title, description, button }) => {
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={variants}
-                transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
             >
                 {button}
             </motion.div>
