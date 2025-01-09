@@ -1,6 +1,10 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import styles from "./Home.module.css";
 import Header from "../components/Home/Header";
+import Bottom from "../components/Home/Bottom";
+import ScrollAnimation from "../components/Home/ScrollAnimation";
 
 // Images
 import lcklogo from "../assets/Home/lcklogo.png";
@@ -16,23 +20,37 @@ import DRX from "../assets/Home/DRX.png";
 import BRO from "../assets/Home/BRO.png";
 import leftArrow from "../assets/Home/leftArrow.png"
 import rightArrow from "../assets/Home/rightArrow.png"
-import Bottom from "../components/Home/Bottom";
+
 
 const Home = () => {
+    const [lckTeamref, lckTeaminView] = useInView({ threshold: 0.5, triggerOnce: false });
+    const [matchref, matchinView] = useInView({ threshold: 0.5, triggerOnce: false });
+    const [rankref, ranlinView] = useInView({ threshold: 0.5, triggerOnce: false });
+
     return (
         <div className={styles.homeContainer}>
             <Header />
-            <div className={styles.onBoarding1}>
-                <div className={styles.wrapper}>
+            <div className={styles.onBoarding1} >
+                <motion.div
+                    className={styles.wrapper}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2 }}
+                >
                     <span className={styles.title}>LCK 승부예측</span>
                     <div className={styles.contentBox}>
                         <span className={styles.description}>LCK 경기, 당신의 예측이 맞을까요? <br /> 지금 바로 도전해보세요!</span>
                         <div className={styles.ctaButton}>승부예측 보러가기</div>
                     </div>
-                </div>
+                </motion.div>
             </div>
             <div className={styles.onBoarding2}>
-                <div className={styles.lckTeamContainer}>
+                <motion.div
+                    className={styles.lckTeamContainer}
+                    ref={lckTeamref}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={lckTeaminView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8 }}>
                     <div className={styles.lckContainer}>
                         <img src={lcklogo} className={styles.lcklogoimg} />
                         <span className={styles.lcktext}>2025 LCK</span>
@@ -69,16 +87,15 @@ const Home = () => {
                             <img src={BRO} className={styles.teamLogo} />
                         </div>
                     </div>
-                </div>
+                </motion.div>
                 <div className={styles.scheduleContainer}>
-                    <div className={styles.wrapper2} >
-                        <span className={styles.title}>LCK 일정</span>
-                        <div className={styles.contentBox}>
-                            <span className={styles.description}>각 팀의 일정과 경기를 확인하며<br />승부의 순간을 함께하세요!</span>
-                            <div className={styles.ctaButton}>일정 확인하기</div>
-                        </div>
-                    </div>
-                    <div className={styles.todayMatchContainer}>
+                    <ScrollAnimation title={"LCK 일정"} description={`각 팀의 일정과 경기를 확인하며<br />승부의 순간을 함께하세요!`} button={"일정 확인하기"} />
+                    <motion.div
+                        className={styles.todayMatchContainer}
+                        ref={matchref}
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={matchinView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8 }}>
                         <span className={styles.todaytext}>Today Match 🔥</span>
                         <div className={styles.matchBox}>
                             <img src={leftArrow} className={styles.arrowImg} />
@@ -98,19 +115,18 @@ const Home = () => {
                             </div>
                             <img src={rightArrow} className={styles.arrowImg} />
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
             <div className={styles.OnBoarding3}>
                 <div className={styles.rankContainer}>
-                    <div className={styles.wrapper2} >
-                        <span className={styles.title}>LCK 순위</span>
-                        <div className={styles.contentBox}>
-                            <span className={styles.description}>LCK 팀들의 치열한 순위 경쟁<br />내 팀의 위치를 확인해보세요!</span>
-                            <div className={styles.ctaButton}>순위 보러가기</div>
-                        </div>
-                    </div>
-                    <div className={styles.rankBox}>
+                    <ScrollAnimation title={"LCK 순위"} description={"LCK 팀들의 치열한 순위 경쟁<br />내 팀의 위치를 확인해보세요!"} button={"순위 보러가기"} />
+                    <motion.div
+                        className={styles.rankBox}
+                        ref={rankref}
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={ranlinView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8 }}>
                         <ul className={styles.rankList}>
                             <li className={styles.rankHeader}>
                                 <div className={styles.headerRank}>Rank</div>
@@ -149,7 +165,7 @@ const Home = () => {
                                 <div className={styles.teamPoints}>13</div>
                             </li>
                         </ul>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
             <Bottom />
