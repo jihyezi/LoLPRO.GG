@@ -4,8 +4,11 @@
   "private": true,
   "dependencies": {
     "cra-template": "1.2.0",
+    "framer-motion": "^11.16.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-intersection-observer": "^9.14.1",
+    "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1"
   },
   "scripts": {
