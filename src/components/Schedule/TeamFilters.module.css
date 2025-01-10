@@ -1,0 +1,26 @@
+.TeamFilters {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.filterItem {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 2px solid #ffffff;
+  border-radius: 34px;
+  color: #ffffff;
+}
+
+.teamIcon {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+}
+
+.teamName {
+  font-weight: 500;
+  font-size: 18px;
+}
