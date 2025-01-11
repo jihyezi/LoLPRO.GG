@@ -19,6 +19,8 @@
   font-size: 48px;
   font-weight: 700;
   font-family: "AlfaSlabOne";
+  margin-right: 5px;
+  vertical-align: middle;
 }
 
 .arrowImg {
@@ -30,6 +32,7 @@
 .calendarImg {
   width: 40px;
   height: 40px;
+  vertical-align: middle;
   cursor: pointer;
 }
 
@@ -90,4 +93,14 @@
   right: 0;
   height: 2px;
   background-color: #ffffff;
+}
+
+.todayIndicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #8e69f4;
+  margin-right: 5px;
+  vertical-align: middle;
 }
