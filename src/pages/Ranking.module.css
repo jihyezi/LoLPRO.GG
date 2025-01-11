@@ -7,6 +7,12 @@
   margin-top: 60px;
 }
 
+.RankingHeader {
+  /* width: 1440px; */
+  height: 240px;
+  object-fit: contain;
+}
+
 .RankingWrapper {
   margin: 50px 200px;
 }
@@ -176,4 +182,49 @@
   font-weight: 700;
   width: 60px;
   text-align: center;
+}
+
+.dropdownMenu {
+  position: absolute;
+  width: 250px;
+  max-height: 300px;
+  border: 1.5px solid #b6b6b6;
+  border-radius: 8px;
+  background-color: white;
+  z-index: 1000;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.dropdownItem {
+  padding: 20px;
+  cursor: pointer;
+  color: #c0c0c0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dropdownItem:hover {
+  color: #151515;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import styles from "./Ranking.module.css";
@@ -6,8 +6,9 @@ import Header from "../components/Home/Header";
 import RankRow from "../components/Ranking/RankRow";
 
 // Images
-import RankingHeader from "../assets/ranking.png";
+import RankingHeader from "../assets/ranking.jpg";
 import down from "../assets/down.png";
+import up from "../assets/up.png";
 import HLE from "../assets/Home/HLE.png";
 import GEN from "../assets/Home/GEN.png";
 import T1 from "../assets/Home/T1.png";
@@ -25,6 +26,41 @@ const Ranking = () => {
     triggerOnce: false,
   });
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedSeason, setSelectedSeason] = useState("2025 LCK 스프링");
+
+  const seasons = [
+    "2012 LCK 스프링",
+    "2012 LCK 서머",
+    "2013 LCK 윈터",
+    "2013 LCK 스프링",
+    "2013 LCK 서머",
+    "2014 LCK 윈터",
+    "2014 LCK 스프링",
+    "2014 LCK 서머",
+    "2015 LCK 스프링",
+    "2015 LCK 서머",
+    "2016 LCK 스프링",
+    "2016 LCK 서머",
+    "2017 LCK 스프링",
+    "2017 LCK 서머",
+    "2018 LCK 스프링",
+    "2018 LCK 서머",
+    "2019 LCK 스프링",
+    "2019 LCK 서머",
+    "2020 LCK 스프링",
+    "2020 LCK 서머",
+    "2021 LCK 스프링",
+    "2021 LCK 서머",
+    "2022 LCK 스프링",
+    "2022 LCK 서머",
+    "2023 LCK 스프링",
+    "2023 LCK 서머",
+    "2024 LCK 스프링",
+    "2024 LCK 서머",
+    "2025 LCK 스프링",
+  ];
+
   const teams = [
     { rank: 1, change: "-", logo: T1, name: "T1", wl: "17W 0L", points: 32 },
     { rank: 2, change: "-", logo: HLE, name: "HLE", wl: "14W 4L", points: 19 },
@@ -38,10 +74,29 @@ const Ranking = () => {
     { rank: 10, change: "-", logo: BRO, name: "BRO", wl: "11W 7L", points: 13 },
   ];
 
+  const handleBackgroundClick = () => {
+    if (dropdownOpen) {
+      setDropdownOpen(false);
+    }
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleSeasonSelect = (season) => {
+    setSelectedSeason(season);
+    setDropdownOpen(false);
+  };
+
   return (
-    <div className={styles.RankingContainer}>
+    <div className={styles.RankingContainer} onClick={handleBackgroundClick}>
       <Header />
-      {/* <img src={RankingHeader} className={styles.RankingHeader} alt="Ranking Header" /> */}
+      {/* <img
+        src={RankingHeader}
+        className={styles.RankingHeader}
+        alt="Ranking Header"
+      /> */}
       <div className={styles.RankingWrapper}>
         <div className={styles.titleContainer}>
           <span className={styles.title}>LCK 순위</span>
@@ -52,9 +107,27 @@ const Ranking = () => {
         </div>
         <div className={styles.seasonContainer}>
           <div className={styles.seasonHeader}>
-            <span className={styles.seasonTitle}>2024 LCK 서머</span>
-            <img src={down} className={styles.downImg} alt="Dropdown" />
+            <span className={styles.seasonTitle}>{selectedSeason}</span>
+            <img
+              src={dropdownOpen ? up : down}
+              className={styles.downImg}
+              alt="Dropdown"
+              onClick={toggleDropdown}
+            />
           </div>
+          {dropdownOpen && (
+            <div className={styles.dropdownMenu}>
+              {seasons.map((season, index) => (
+                <div
+                  key={index}
+                  className={styles.dropdownItem}
+                  onClick={() => handleSeasonSelect(season)}
+                >
+                  {season}
+                </div>
+              ))}
+            </div>
+          )}
           <div className={styles.rankContainer}>
             <motion.div
               className={styles.rankBox}
