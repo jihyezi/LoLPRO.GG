@@ -28,6 +28,7 @@ const Schedule = () => {
   });
 
   const [currentDate, setCurrentDate] = useState(new Date(2025, 0));
+  const [selectedTeam, setSelectedTeam] = useState("전체");
   const teams = [
     { logo: MENU, name: "전체" },
     { logo: T1, name: "T1" },
@@ -43,6 +44,14 @@ const Schedule = () => {
   ];
 
   const calendarRef = useRef(null);
+
+  const exampleEvents = [
+    { year: 2025, month: 0, date: 8, time: "17:00", match: "T1 vs KT" },
+    { year: 2025, month: 0, date: 9, time: "19:00", match: "HLE vs GEN" },
+    { year: 2025, month: 0, date: 9, time: "21:00", match: "T1 vs BRO" },
+    { year: 2025, month: 0, date: 12, time: "15:00", match: "T1 vs BFX" },
+    { year: 2025, month: 1, date: 12, time: "15:00", match: "T1 vs BFX" },
+  ];
 
   const handlePrevMonth = () => {
     setCurrentDate(
@@ -62,7 +71,7 @@ const Schedule = () => {
 
   useEffect(() => {
     generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
-  }, [currentDate]);
+  }, [currentDate, selectedTeam]);
 
   const generateCalendar = (year, month) => {
     if (!calendarRef.current) return;
@@ -80,7 +89,15 @@ const Schedule = () => {
         } else if (date > daysInMonth) {
           break;
         } else {
-          row += `<td>${date}</td>`;
+          const today = new Date();
+          const isToday =
+            date === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear();
+          const todayIndicator = isToday
+            ? `<span class="${styles.todayIndicator}"></span>`
+            : "";
+          row += `<td>${todayIndicator}${date}</td>`;
           date++;
         }
       }
@@ -91,30 +108,54 @@ const Schedule = () => {
 
     calendarBody.innerHTML = html;
 
-    const exampleEvents = [
-      { date: 8, time: "17:00", match: "T1 vs KT" },
-      { date: 9, time: "19:00", match: "HLE vs GEN" },
-      { date: 12, time: "15:00", match: "T1 vs BFX" },
-    ];
+    const filteredEvents = exampleEvents.filter((event) => {
+      if (selectedTeam === "전체") return true;
+      return event.match.includes(selectedTeam);
+    });
 
-    exampleEvents.forEach((event) => {
+    filteredEvents.forEach((event) => {
       const cells = calendarBody.querySelectorAll("td");
       cells.forEach((cell) => {
-        if (parseInt(cell.textContent) === event.date) {
-          const div = document.createElement("div");
-          div.classList.add("event");
-          console.log("event", div);
-          div.textContent = `${event.time} ${event.match}`;
+        const cellDate =
+          cell.firstChild && parseInt(cell.firstChild.textContent);
+        if (
+          cellDate === event.date &&
+          month === event.month &&
+          year === event.year
+        ) {
+          const eventDiv = document.createElement("div");
+          eventDiv.classList.add("event");
 
-          div.style.backgroundColor = "#8e69f4";
-          div.style.color = "#ffffff";
-          div.style.borderRadius = "8px";
-          div.style.padding = "5px";
-          div.style.textAlign = "center";
-          div.style.fontWeight = "500";
-          div.style.fontSize = "14px";
+          const timeSpan = document.createElement("span");
+          timeSpan.textContent = event.time;
+          timeSpan.style.marginRight = "10px";
 
-          cell.appendChild(div);
+          const matchSpan = document.createElement("span");
+          matchSpan.textContent = event.match;
+
+          eventDiv.appendChild(timeSpan);
+          eventDiv.appendChild(matchSpan);
+
+          eventDiv.style.backgroundColor = "#8e69f4";
+          eventDiv.style.color = "#ffffff";
+          eventDiv.style.borderRadius = "8px";
+          eventDiv.style.padding = "5px";
+          eventDiv.style.textAlign = "center";
+          eventDiv.style.fontWeight = "500";
+          eventDiv.style.fontSize = "14px";
+
+          let eventContainer = cell.querySelector(".event-container");
+          if (!eventContainer) {
+            eventContainer = document.createElement("div");
+            eventContainer.classList.add("event-container");
+
+            eventContainer.style.display = "flex";
+            eventContainer.style.flexDirection = "column";
+            eventContainer.style.gap = "4px";
+            cell.appendChild(eventContainer);
+          }
+
+          eventContainer.appendChild(eventDiv);
         }
       });
     });
@@ -193,7 +234,10 @@ const Schedule = () => {
                 key={team.name}
                 teamLogo={team.logo}
                 teamName={team.name}
-                onFilterSelect={(teamName) => console.log(teamName)}
+                onFilterSelect={(teamName) => {
+                  setSelectedTeam(teamName);
+                }}
+                isSelected={selectedTeam === team.name}
               />
             ))}
           </div>
