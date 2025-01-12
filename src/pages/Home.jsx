@@ -8,16 +8,16 @@ import ScrollAnimation from "../components/Home/ScrollAnimation";
 
 // Images
 import lcklogo from "../assets/Home/lcklogo.png";
-import HLE from "../assets/Home/HLE.png";
-import GEN from "../assets/Home/GEN.png";
-import T1 from "../assets/Home/T1.png";
-import DK from "../assets/Home/DK.png";
-import KT from "../assets/Home/KT.png";
-import BFX from "../assets/Home/BFX.png";
-import NS from "../assets/Home/NS.png";
-import DNF from "../assets/Home/DNF.png";
-import DRX from "../assets/Home/DRX.png";
-import BRO from "../assets/Home/BRO.png";
+import HLE from "../assets/Team/HLE.png";
+import GEN from "../assets/Team/GEN.png";
+import T1 from "../assets/Team/T1.png";
+import DK from "../assets/Team/DK.png";
+import KT from "../assets/Team/KT.png";
+import BFX from "../assets/Team/BFX.png";
+import NS from "../assets/Team/NS.png";
+import DNF from "../assets/Team/DNF.png";
+import DRX from "../assets/Team/DRX.png";
+import BRO from "../assets/Team/BRO.png";
 import leftArrow from "../assets/Home/leftArrow.png"
 import rightArrow from "../assets/Home/rightArrow.png"
 
