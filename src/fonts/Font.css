@@ -1,4 +1,10 @@
 @font-face {
+  font-family: "BlackOps";
+  font-style: normal;
+  font-weight: 100;
+  src: url("./BlackOpsOne-Regular.ttf") format("woff");
+}
+@font-face {
   font-family: "AlfaSlabOne";
   src: url("./AlfaSlabOne-Regular.ttf") format("truetype");
 }
