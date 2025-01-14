@@ -43,16 +43,20 @@ const AnimatedDiv = ({ title, description, button }) => {
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             >
                 <span className={styles.description} dangerouslySetInnerHTML={{ __html: description }} />
-            </motion.div>
 
-            <motion.div
-                className={styles.ctaButton}
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"}
-                variants={variants}
-                transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-            >
-                {button}
+
+                <motion.div
+                    className={styles.ctaButton}
+                    initial="hidden"
+                    animate={inView ? "visible" : "hidden"}
+                    variants={variants}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ stiffness: 400, damping: 10, duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                >
+                    {button}
+                </motion.div>
+
             </motion.div>
         </div>
     );

@@ -40,7 +40,14 @@ const Home = () => {
                     <span className={styles.title}>LCK 승부예측</span>
                     <div className={styles.contentBox}>
                         <span className={styles.description}>LCK 경기, 당신의 예측이 맞을까요? <br /> 지금 바로 도전해보세요!</span>
-                        <div className={styles.ctaButton}>승부예측 보러가기</div>
+                        <motion.div
+                            className={styles.ctaButton}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            transition={{ stiffness: 400, damping: 10 }}
+                        >
+                            승부예측 보러가기
+                        </motion.div>
                     </div>
                 </motion.div>
             </div>
