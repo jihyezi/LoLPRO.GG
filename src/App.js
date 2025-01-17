@@ -6,6 +6,7 @@ import Ranking from "./pages/Ranking";
 import Prediction from "./pages/Prediction";
 import Content from "./components/Prediction/Content";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/prediction" element={<Prediction />} />
         <Route path="/prediction/:weekNumber" element={<Content />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );
