@@ -3,6 +3,7 @@ name: Monitor Updates
 on:
   schedule:
     - cron: "*/5 * * * *" # 5분마다 실행
+  workflow_dispatch: # 수동 실행도 가능하도록 설정
 
 jobs:
   monitor-job:
@@ -23,6 +24,8 @@ jobs:
           npm install
 
       - name: Run Monitor
+        env:
+          LOLPRO_TOKEN: ${{ secrets.LOLPRO_TOKEN }}
         run: |
           cd backend
           node monitor.js
