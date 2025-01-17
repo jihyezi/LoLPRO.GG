@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 
 import logo from "../../assets/Home/logo.png";
@@ -7,6 +7,7 @@ import profile from "../../assets/Home/profile.png";
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [selectedMenu, setSelcetedMenu] = useState("홈");
 
   const menuItems = [
@@ -15,6 +16,10 @@ const Header = () => {
     { name: "순위", href: "/ranking" },
     { name: "승부예측", href: "/prediction" },
   ];
+
+  const handleLogin = () => {
+    navigate('/login');
+  }
 
   useEffect(() => {
     const currentMenu = menuItems.find(
@@ -46,7 +51,10 @@ const Header = () => {
           ))}
         </ul>
       </div>
-      <div className={styles.profileContainer}>
+      <div
+        className={styles.profileContainer}
+        onClick={handleLogin}
+      >
         <img src={profile} className={styles.profileimg} />
       </div>
     </div>
