@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
 
       # 3. 의존성 설치
       - name: Install dependencies
@@ -40,7 +40,7 @@ jobs:
           node app.js &
           SERVER_PID=$!
 
-          sleep 5
+          sleep 10
           curl -X GET http://localhost:3000/scrape
 
           kill $SERVER_PID
