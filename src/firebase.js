@@ -5,13 +5,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDAb6Jj77r6axd8JUoL1hChfiCtnOF73WI",
-    authDomain: "lolprogg-ed60f.firebaseapp.com",
-    databaseURL: "https://lolprogg-ed60f-default-rtdb.firebaseio.com",
-    projectId: "lolprogg-ed60f",
-    storageBucket: "lolprogg-ed60f.firebasestorage.app",
-    messagingSenderId: "793229653649",
-    appId: "1:793229653649:web:d31b2aafb8d7bb2c3af130"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID
 };
 
 // Initialize Firebase
