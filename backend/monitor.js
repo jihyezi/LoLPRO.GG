@@ -29,11 +29,11 @@ async function monitorSite() {
 }
 
 async function triggerGitHubActions() {
-  const githubToken = secrets.LOLPRO_TOKEN;
+  const githubToken = process.env.LOLPRO_TOKEN;
   const owner = "rlaehdud159";
   const repo = "LoLPRO.GG";
   const workflow = "update-rankings.yml";
-  console.log(secrets.LOLPRO_TOKEN)
+  console.log(process.env.LOLPRO_TOKEN);
   console.log({ githubToken, owner, repo, workflow });
   try {
     await axios.post(
