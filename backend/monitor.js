@@ -30,7 +30,7 @@ async function monitorSite() {
 
 async function triggerGitHubActions() {
   const githubToken = process.env.LOLPRO_TOKEN;
-  const owner = "jihyezi";
+  const owner = "rlaehdud159";
   const repo = "LoLPRO.GG";
   const workflow = "update-rankings.yml";
 
