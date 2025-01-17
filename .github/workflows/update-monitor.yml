@@ -23,6 +23,8 @@ jobs:
           npm install
 
       - name: Run Monitor
+        env:
+          LOLPRO_TOKEN: ${{ secrets.LOLPRO_TOKEN }}
         run: |
           cd backend
           node monitor.js

@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
 
       # 3. 의존성 설치
       - name: Install dependencies
@@ -31,7 +31,7 @@ jobs:
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: |
-          echo $FIREBASE_CONFIG > backend/config/firebaseConfig.js
+          echo $FIREBASE_CONFIG > backend/config/lolprogg-ed60f-firebase-adminsdk-1cerz-46615cd137.json
 
       # 5. 서버 실행 및 스크래핑 API 호출
       - name: Run server and scrape
@@ -40,7 +40,7 @@ jobs:
           node app.js &
           SERVER_PID=$!
 
-          sleep 5
+          sleep 10
           curl -X GET http://localhost:3000/scrape
 
           kill $SERVER_PID
