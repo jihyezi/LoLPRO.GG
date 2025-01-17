@@ -5,9 +5,10 @@ import app from "../firebase";
 import { motion } from "framer-motion";
 import styles from "./Login.module.css"
 
-import logo from "../assets/Home/logo.png";
-import google from "../assets/Login/googleLogo.png";
-import errorIcon from "../assets/Login/error.png";
+// Images
+import logo from "assets/Home/logo.png";
+import google from "assets/Login/googleLogo.png";
+import errorIcon from "assets/Login/error.png";
 
 const Login = () => {
     const auth = getAuth(app);

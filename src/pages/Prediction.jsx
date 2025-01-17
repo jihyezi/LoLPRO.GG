@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import Header from "../components/Home/Header";
+import Header from "components/Home/Header";
 import styles from "./Prediction.module.css";
-import Content from "../components/Prediction/Content";
+import Content from "components/Prediction/Content";
 
 const Prediction = () => {
     const [lckTeamref, lckTeaminView] = useInView({ threshold: 0.5, triggerOnce: false });

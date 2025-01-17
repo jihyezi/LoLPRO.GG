@@ -2,24 +2,24 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import styles from "./Home.module.css";
-import Header from "../components/Home/Header";
-import Bottom from "../components/Home/Bottom";
-import ScrollAnimation from "../components/Home/ScrollAnimation";
+import Header from "components/Home/Header";
+import Bottom from "components/Home/Bottom";
+import ScrollAnimation from "components/Home/ScrollAnimation";
 
 // Images
-import lcklogo from "../assets/Home/lcklogo.png";
-import HLE from "../assets/Team/HLE.png";
-import GEN from "../assets/Team/GEN.png";
-import T1 from "../assets/Team/T1.png";
-import DK from "../assets/Team/DK.png";
-import KT from "../assets/Team/KT.png";
-import BFX from "../assets/Team/BFX.png";
-import NS from "../assets/Team/NS.png";
-import DNF from "../assets/Team/DNF.png";
-import DRX from "../assets/Team/DRX.png";
-import BRO from "../assets/Team/BRO.png";
-import leftArrow from "../assets/Home/leftArrow.png"
-import rightArrow from "../assets/Home/rightArrow.png"
+import lcklogo from "assets/Home/lcklogo.png";
+import HLE from "assets/Team/HLE.png";
+import GEN from "assets/Team/GEN.png";
+import T1 from "assets/Team/T1.png";
+import DK from "assets/Team/DK.png";
+import KT from "assets/Team/KT.png";
+import BFX from "assets/Team/BFX.png";
+import NS from "assets/Team/NS.png";
+import DNF from "assets/Team/DNF.png";
+import DRX from "assets/Team/DRX.png";
+import BRO from "assets/Team/BRO.png";
+import leftArrow from "assets/Home/leftArrow.png"
+import rightArrow from "assets/Home/rightArrow.png"
 
 
 const Home = () => {
