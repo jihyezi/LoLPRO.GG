@@ -33,7 +33,8 @@ async function triggerGitHubActions() {
   const owner = "rlaehdud159";
   const repo = "LoLPRO.GG";
   const workflow = "update-rankings.yml";
-
+  console.log(process.env.LOLPRO_TOKEN)
+  console.log({ githubToken, owner, repo, workflow });
   try {
     await axios.post(
       `https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflow}/dispatches`,
@@ -51,4 +52,4 @@ async function triggerGitHubActions() {
   }
 }
 
-setInterval(monitorSite, 5 * 60 * 1000); // 5분 간격
+setInterval(monitorSite, 5 * 1000); // 5초 간격
