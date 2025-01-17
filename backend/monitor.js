@@ -33,8 +33,6 @@ async function triggerGitHubActions() {
   const owner = "jihyezi";
   const repo = "LoLPRO.GG";
   const workflow = "update-rankings.yml";
-  console.log(process.env.LOLPRO_TOKEN);
-  console.log({ githubToken, owner, repo, workflow });
 
   try {
     await axios.post(
