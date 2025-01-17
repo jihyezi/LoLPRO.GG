@@ -9,6 +9,8 @@ import styles from "./Login.module.css"
 import logo from "assets/Home/logo.png";
 import google from "assets/Login/googleLogo.png";
 import errorIcon from "assets/Login/error.png";
+import eyeOn from "assets/Login/eye_on.png";
+import eyeOff from "assets/Login/eye_off.png";
 
 const Login = () => {
     const auth = getAuth(app);
@@ -17,6 +19,11 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [showPW, setShowPW] = useState(true);
+
+    const handlerShowPW = () => {
+        setShowPW(!showPW);
+    }
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -74,12 +81,19 @@ const Login = () => {
                     <div className={styles.passwordWrapper}>
                         <input
                             name="password"
-                            type="password"
+                            type={showPW ? "text" : "password"}
                             className={styles.passwordBox}
                             placeholder="비밀번호"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             data-status={password ? "true" : "false"} />
+                        <div onClick={handlerShowPW} className={styles.showPW}>
+                            <img
+                                src={showPW ? eyeOn : eyeOff}
+                                alt="비밀번호 보기/감추기"
+                                style={{ width: "18px", height: "18px" }}
+                            />
+                        </div>
                     </div>
                     {error && (
                         <div className={styles.errorBox}>

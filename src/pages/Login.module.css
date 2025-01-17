@@ -113,6 +113,7 @@
     border-radius: 4px;
     box-sizing: border-box;
     padding: 10px 16px;
+    padding-right: 36px;
     height: 40px;
     display: block;
     outline: none;
@@ -138,6 +139,14 @@
 .passwordBox[data-status="true"] {
     background-color: #ffffff;
     border: 2px solid #8E69F4;
+}
+
+.showPW {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%); 
+    cursor: pointer;
 }
 
 .loginButton {
