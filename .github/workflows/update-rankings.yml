@@ -31,7 +31,7 @@ jobs:
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: |
-          echo $FIREBASE_CONFIG > backend/config/firebaseConfig.js
+          echo $FIREBASE_CONFIG > backend/config/lolprogg-ed60f-firebase-adminsdk-1cerz-46615cd137.json
 
       # 5. 서버 실행 및 스크래핑 API 호출
       - name: Run server and scrape
