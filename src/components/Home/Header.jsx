@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 
-import logo from "../../assets/Home/logo.png";
-import profile from "../../assets/Home/profile.png";
+import logo from "assets/Home/logo.png";
+import profile from "assets/Home/profile.png";
 
 const Header = () => {
   const location = useLocation();

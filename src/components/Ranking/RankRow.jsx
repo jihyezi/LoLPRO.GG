@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../pages/Ranking.module.css";
+import styles from "pages/Ranking.module.css";
 
 const RankRow = ({
   rank,

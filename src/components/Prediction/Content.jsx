@@ -1,26 +1,17 @@
 import React, { useState } from "react";
 import styles from "./Content.module.css"
 
-import HLE from "../../assets/Team/HLE.png";
-import GEN from "../../assets/Team/GEN.png";
-import T1 from "../../assets/Team/T1.png";
-import DK from "../../assets/Team/DK.png";
-import KT from "../../assets/Team/KT.png";
-import BFX from "../../assets/Team/BFX.png";
-import NS from "../../assets/Team/NS.png";
-import DNF from "../../assets/Team/DNF.png";
-import DRX from "../../assets/Team/DRX.png";
-import BRO from "../../assets/Team/BRO.png";
-import HLE_off from "../../assets/Team/HLE_off.png";
-import GEN_off from "../../assets/Team/GEN_off.png";
-import T1_off from "../../assets/Team/T1_off.png";
-import DK_off from "../../assets/Team/DK_off.png";
-import KT_off from "../../assets/Team/KT_off.png";
-import BFX_off from "../../assets/Team/BFX_off.png";
-import NS_off from "../../assets/Team/NS_off.png";
-import DNF_off from "../../assets/Team/DNF_off.png";
-import DRX_off from "../../assets/Team/DRX_off.png";
-import BRO_off from "../../assets/Team/BRO_off.png";
+// Images
+import HLE from "assets/Team/HLE.png";
+import GEN from "assets/Team/GEN.png";
+import T1 from "assets/Team/T1.png";
+import DK from "assets/Team/DK.png";
+import KT from "assets/Team/KT.png";
+import BFX from "assets/Team/BFX.png";
+import NS from "assets/Team/NS.png";
+import DNF from "assets/Team/DNF.png";
+import DRX from "assets/Team/DRX.png";
+import BRO from "assets/Team/BRO.png";
 
 const Content = ({ weekNumber }) => {
 
