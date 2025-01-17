@@ -5,6 +5,7 @@ import Schedule from "./pages/Schedule";
 import Ranking from "./pages/Ranking";
 import Prediction from "./pages/Prediction";
 import Content from "./components/Prediction/Content";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/prediction" element={<Prediction />} />
         <Route path="/prediction/:weekNumber" element={<Content />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

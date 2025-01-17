@@ -52,7 +52,7 @@ const AnimatedDiv = ({ title, description, button }) => {
                     variants={variants}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    transition={{ stiffness: 400, damping: 10, duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                    transition={{ stiffness: 400, damping: 10, duration: 0.5, delay: 0.3, ease: "easeOut" }}
                 >
                     {button}
                 </motion.div>
