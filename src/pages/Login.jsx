@@ -19,7 +19,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [showPW, setShowPW] = useState(true);
+    const [showPW, setShowPW] = useState(false);
 
     const handlerShowPW = () => {
         setShowPW(!showPW);
@@ -39,6 +39,7 @@ const Login = () => {
             await signInWithEmailAndPassword(auth, email, password);
             console.log("로그인 성공");
             setError("");
+            navigate('/');
         } catch (error) {
             setError("이메일 또는 비밀번호가 올바르지 않습니다.");
         }
