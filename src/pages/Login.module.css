@@ -66,7 +66,7 @@
 }
 
 .emailBox {
-    background-color: #ebebeb;
+    background-color: #ffffff;
     border: none;
     border-radius: 4px;
     box-sizing: border-box;
@@ -76,8 +76,8 @@
     width: 300px;
     height: 40px;
     color: rgb(31, 31, 31);
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .emailBox::placeholder {
@@ -108,7 +108,7 @@
 }
 
 .passwordBox {
-    background-color: #ebebeb;
+    background-color: #ffffff;
     border: none;
     border-radius: 4px;
     box-sizing: border-box;
@@ -120,8 +120,8 @@
     width: 300px;
     height: 40px;
     color: rgb(31, 31, 31);
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .passwordBox::placeholder {

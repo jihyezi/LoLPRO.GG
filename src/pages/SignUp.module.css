@@ -1,0 +1,279 @@
+.signupContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    /* background-image: url("../assets/Login/login_background.jpg");
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat; */
+}
+
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.logoimg {
+    width: 40px;
+    height: 40px;
+}
+
+.logotext {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.signupWrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: start;
+    margin-top: 70px;
+}
+
+.signupBox {
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+    /* height: 580px; */
+    align-items: center;
+    background-color: #31313C;
+    border-radius: 10px;
+}
+
+.signupText {
+    margin: 50px 0px;
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.nameWrapper {
+    position: relative;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.nameBox {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 10px 16px;
+    display: block;
+    outline: none;
+    width: 300px;
+    height: 40px;
+    color: rgb(31, 31, 31);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nameBox::placeholder {
+    color: rgb(102, 102, 102);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-size: 13px;
+}
+
+.nameBox:focus {
+    background-color: #ffffff;
+    border: 2px solid #8E69F4;
+}
+
+.nameBox[data-status="true"] {
+    background-color: #ffffff;
+    border: 2px solid #8E69F4;
+}
+
+.emailWrapper {
+    position: relative;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.emailBox {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 10px 16px;
+    display: block;
+    outline: none;
+    width: 300px;
+    height: 40px;
+    color: rgb(31, 31, 31);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.emailBox::placeholder {
+    color: rgb(102, 102, 102);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-size: 13px;
+}
+
+.emailBox:focus {
+    background-color: #ffffff;
+    border: 2px solid #8E69F4;
+}
+
+.emailBox[data-status="true"] {
+    background-color: #ffffff;
+    border: 2px solid #8E69F4;
+}
+
+.passwordWrapper {
+    position: relative;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.passwordBox {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 10px 16px;
+    padding-right: 36px;
+    height: 40px;
+    display: block;
+    outline: none;
+    width: 300px;
+    height: 40px;
+    color: rgb(31, 31, 31);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.passwordBox::placeholder {
+    color: rgb(102, 102, 102);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-size: 13px;
+}
+
+.passwordBox:focus {
+    background-color: #ffffff;
+    border: 2px solid #8E69F4;
+}
+
+.passwordBox[data-status="true"] {
+    background-color: #ffffff;
+    border: 2px solid #8E69F4;
+}
+
+
+.showPW {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%); 
+    cursor: pointer;
+}
+
+.signupButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    padding: 0px 2px;
+    width: 300px;
+    height: 40px;
+    background-color: #8E69F4;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 16px;
+    cursor: default;
+}
+
+.disabledButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    padding: 0px 2px;
+    width: 300px;
+    height: 40px;
+    background-color: #c3c3c3;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 16px;
+    cursor: default;
+}
+
+.orBox {
+    display: flex;
+    width: 300px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 20px 0px;
+}
+
+.googleButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 2px;
+    width: 300px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    gap: 10px;
+    color: rgb(102, 102, 102);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.errorBox {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    justify-content: start;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.errorIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.errorText {
+    color: #FF3030;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.successText {
+    color: #8E69F4;
+    font-size: 13px;
+    font-weight: 500;
+}
