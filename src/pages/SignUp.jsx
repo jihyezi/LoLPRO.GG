@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 import app from "../firebase";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { motion } from "framer-motion";
@@ -31,6 +31,22 @@ const SignUp = () => {
     const [showPW, setShowPW] = useState(false);
     const [showPW2, setShowPW2] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
+
+    const handleGoogleLogin = async () => {
+        try {
+            const result = await signInWithRedirect(auth, provider);
+            const user = result.user;
+
+            if (user) {
+                // 구글 로그인 성공 시 홈으로 이동
+                navigate('/');
+            } else {
+                alert("사용자 정보를 가져오지 못했습니다.");
+            }
+        } catch (error) {
+            alert("구글 로그인 실패. 다시 시도해주세요.")
+        }
+    };
 
     const handlerShowPW = () => {
         setShowPW(!showPW);
@@ -97,15 +113,6 @@ const SignUp = () => {
             console.error("회원가입 실패:", error.message);
         }
     }
-
-    const handleGoogleLogin = async () => {
-        try {
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-        } catch (error) {
-            alert("구글 로그인 실패. 다시 시도해주세요.")
-        }
-    };
 
     return (
         <div className={styles.signupContainer}>

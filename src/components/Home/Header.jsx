@@ -59,7 +59,7 @@ const Header = () => {
     signOut(auth).then(() => {
       setUser(null);
       setDropdownOpen(false);
-      navigate("/");
+      navigate("/login");
     })
       .catch((error) => {
         console.log("로그아웃 실패", error);
