@@ -11,33 +11,9 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import app from "./firebase";
 import { useEffect, useState } from "react";
 import Header from "components/Home/Header";
+import RegisterProfile from "pages/RegisterProfile";
 
 const App = () => {
-  const auth = getAuth(app);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const login = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-      } else {
-        setUser(null);
-      }
-    });
-    return () => login();
-  }, [auth]);
-
-  // 로그아웃 처리
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        setUser(null);  // 로그아웃 후 상태 초기화
-      })
-      .catch((error) => {
-        console.error("로그아웃 실패", error);
-      });
-  };
-
   return (
     <BrowserRouter>
       <Routes>
@@ -48,6 +24,7 @@ const App = () => {
         <Route path="/prediction/:weekNumber" element={<Content />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/register-profile" element={<RegisterProfile />} />
       </Routes>
     </BrowserRouter>
   );
