@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Home/Header";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Header from "components/Home/Header";
 import styles from "./Prediction.module.css";
-import Content from "../components/Prediction/Content";
+import Content from "components/Prediction/Content";
 
 const Prediction = () => {
+    const [lckTeamref, lckTeaminView] = useInView({ threshold: 0.5, triggerOnce: false });
     const currentDate = new Date();
 
     const calendarItems = [
@@ -34,10 +37,15 @@ const Prediction = () => {
         <div className={styles.predictionContainer}>
             <Header />
             <div>
-                <div className={styles.titleContainer}>
+                <motion.div
+                    className={styles.titleContainer}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2 }}
+                >
                     <span className={styles.cupInfo}>2025 LCK CUP</span>
                     <span className={styles.title}>승부예측</span>
-                </div>
+                </motion.div>
                 <div className={styles.calendarContainer}>
                     <div className={styles.calendarWrapper}>
                         <ul className={styles.calendarList}>

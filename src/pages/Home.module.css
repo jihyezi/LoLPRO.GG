@@ -8,9 +8,9 @@
 
 .onBoarding1 {
     width: 100%;
-    height: 600px;
+    height: 700px;
     margin-top: 60px; 
-    background-image: url('../assets/Home/jinx.png');
+    background-image: url('../assets/Home/home_jinx.png');
     background-size: cover;
     background-position: center center; 
     position: relative;
@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     max-width: 480px;
-    padding: 54px 80px;
+    padding: 80px 80px;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -68,7 +68,7 @@
 
 .onBoarding2 {
     width: 100%;
-    height: 600px;
+    height: 700px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -151,7 +151,7 @@
     align-items: center;
     flex-direction: column;
     margin-left: 120px;
-    height: 550px;
+    height: 600px;
 }
 
 .wrapper2 {
@@ -240,12 +240,12 @@
 
 .OnBoarding3 {
     width: 100%;
-    height: 600px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     align-items: start;
     overflow: hidden;
-    background-image: url('../assets/Home/nocturne.png');
+    background-image: url('../assets/Home/home_nocturne.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
