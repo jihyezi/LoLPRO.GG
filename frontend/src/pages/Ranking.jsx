@@ -28,38 +28,35 @@ const Ranking = () => {
   });
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedSeason, setSelectedSeason] = useState("2025 LCK 스프링");
+  const [selectedSeason, setSelectedSeason] = useState({
+    year: 2025,
+    season: "spring",
+    name: "2025 LCK 스프링",
+  });
+  const [rankings, setRankings] = useState([]);
 
   const seasons = [
-    "2012 LCK 스프링",
-    "2012 LCK 서머",
-    "2013 LCK 윈터",
-    "2013 LCK 스프링",
-    "2013 LCK 서머",
-    "2014 LCK 윈터",
-    "2014 LCK 스프링",
-    "2014 LCK 서머",
-    "2015 LCK 스프링",
-    "2015 LCK 서머",
-    "2016 LCK 스프링",
-    "2016 LCK 서머",
-    "2017 LCK 스프링",
-    "2017 LCK 서머",
-    "2018 LCK 스프링",
-    "2018 LCK 서머",
-    "2019 LCK 스프링",
-    "2019 LCK 서머",
-    "2020 LCK 스프링",
-    "2020 LCK 서머",
-    "2021 LCK 스프링",
-    "2021 LCK 서머",
-    "2022 LCK 스프링",
-    "2022 LCK 서머",
-    "2023 LCK 스프링",
-    "2023 LCK 서머",
-    "2024 LCK 스프링",
-    "2024 LCK 서머",
-    "2025 LCK 스프링",
+    { year: 2015, season: "spring", name: "2015 LCK 스프링" },
+    { year: 2015, season: "summer", name: "2015 LCK 서머" },
+    { year: 2016, season: "spring", name: "2016 LCK 스프링" },
+    { year: 2016, season: "summer", name: "2016 LCK 서머" },
+    { year: 2017, season: "spring", name: "2017 LCK 스프링" },
+    { year: 2017, season: "summer", name: "2017 LCK 서머" },
+    { year: 2018, season: "spring", name: "2018 LCK 스프링" },
+    { year: 2018, season: "summer", name: "2018 LCK 서머" },
+    { year: 2019, season: "spring", name: "2019 LCK 스프링" },
+    { year: 2019, season: "summer", name: "2019 LCK 서머" },
+    { year: 2020, season: "spring", name: "2020 LCK 스프링" },
+    { year: 2020, season: "summer", name: "2020 LCK 서머" },
+    { year: 2021, season: "spring", name: "2021 LCK 스프링" },
+    { year: 2021, season: "summer", name: "2021 LCK 서머" },
+    { year: 2022, season: "spring", name: "2022 LCK 스프링" },
+    { year: 2022, season: "summer", name: "2022 LCK 서머" },
+    { year: 2023, season: "spring", name: "2023 LCK 스프링" },
+    { year: 2023, season: "summer", name: "2023 LCK 서머" },
+    { year: 2024, season: "spring", name: "2024 LCK 스프링" },
+    { year: 2024, season: "summer", name: "2024 LCK 서머" },
+    { year: 2025, season: "spring", name: "2025 LCK 스프링" },
   ];
 
   const teams = [
@@ -75,17 +72,19 @@ const Ranking = () => {
     { rank: 10, change: "-", logo: BRO, name: "BRO", wl: "11W 7L", points: 13 },
   ];
 
-  const [rankings, setRankings] = useState([]);
-
   useEffect(() => {
     const getRankingData = async () => {
-      const data = await fetchRankings();
+      const data = await fetchRankings(
+        selectedSeason.year,
+        selectedSeason.season
+      );
+      data.sort((a, b) => a.rank - b.rank);
       setRankings(data);
     };
 
     getRankingData();
     console.log("rankings", rankings);
-  }, []);
+  }, [selectedSeason]);
 
   const handleBackgroundClick = () => {
     if (dropdownOpen) {
@@ -120,7 +119,7 @@ const Ranking = () => {
         </div>
         <div className={styles.seasonContainer}>
           <div className={styles.seasonHeader}>
-            <span className={styles.seasonTitle}>{selectedSeason}</span>
+            <span className={styles.seasonTitle}>{selectedSeason.name}</span>
             <img
               src={dropdownOpen ? up : down}
               className={styles.downImg}
@@ -136,7 +135,7 @@ const Ranking = () => {
                   className={styles.dropdownItem}
                   onClick={() => handleSeasonSelect(season)}
                 >
-                  {season}
+                  {season.name}
                 </div>
               ))}
             </div>
@@ -156,32 +155,20 @@ const Ranking = () => {
                   <div className={styles.headerWL}>W-L</div>
                   <div className={styles.headerPoints}>Point</div>
                 </li>
-                {teams.map((team) => (
+                {rankings.map((team) => (
                   <RankRow
                     key={team.rank}
                     rank={team.rank}
-                    change={team.change}
                     teamLogo={team.logo}
-                    teamName={team.name}
-                    wlRecord={team.wl}
-                    teamPoints={team.points}
+                    teamName={team.teamName}
+                    setWins={team.wins}
+                    setLosses={team.losses}
                   />
                 ))}
               </ul>
             </motion.div>
           </div>
         </div>
-      </div>
-      <div>
-        <h1 style={{ color: "white" }}>Rankings</h1>
-        <ul>
-          {rankings.map((team, index) => (
-            <li key={index} style={{ color: "white" }}>
-              {team.teamName} - Rank : {team.rank}, Wins: {team.wins}, Losses:{" "}
-              {team.losses}
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );

@@ -62,18 +62,6 @@ const scrapeAndSave = async () => {
     const batch = db.batch();
     const rankingRef = db.collection("ranking");
 
-    // scrapedData.forEach((item) => {
-    //   const docRef = rankingRef.doc();
-    //   batch.set(docRef, {
-    //     teamName: item.teamName,
-    //     percentage: item.percentage,
-    //     wins: item.wins,
-    //     losses: item.losses,
-    //     game_duration: item.game_duration,
-    //     gdm: item.gdm,
-    //   });
-    // });
-
     for (const item of scrapedData) {
       const docRef = rankingRef.doc(item.teamName);
       batch.set(

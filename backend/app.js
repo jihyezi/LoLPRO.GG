@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const rankingsRouter = require("./routes/rankingRoutes");
-const scrapeAndSave = require("./scraper/scraper");
+// const scrapeAndSave = require("./scraper/scraper");
+const scrapeAndSave = require("./scraper/pre_scraper");
 
 const app = express();
 const PORT = 3000;

@@ -3,11 +3,20 @@ const db = require("../config/firebaseConfig");
 
 const getRankings = async (req, res) => {
   try {
-    const rankingsRef = db.collection("ranking");
+    const { year, season } = req.query;
+
+    if (!year || !season) {
+      return res.status(400).send("Missing year or season parameter");
+    }
+
+    const rankingsRef = db.collection("ranking").doc(year).collection(season);
+
     const snapshot = await rankingsRef.get();
 
     if (snapshot.empty) {
-      return res.status(404).send("No rankings found");
+      return res
+        .status(404)
+        .send("No rankings found for the given year and season");
     }
 
     const rankings = [];
@@ -23,8 +32,13 @@ const getRankings = async (req, res) => {
 
 const addResult = async (req, res) => {
   try {
-    const rankingData = req.body;
-    const rankingsRef = db.collection("ranking");
+    const { year, season, ...rankingData } = req.body;
+    if (!year || !season) {
+      return res.status(400).send("Missing year or season parameter");
+    }
+
+    const rankingsRef = db.collection("ranking").doc(year).collection(season);
+
     const result = await rankingsRef.add(rankingData);
     res.status(201).json({ id: result.id });
   } catch (error) {
