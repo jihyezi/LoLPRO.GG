@@ -59,19 +59,6 @@ const Ranking = () => {
     { year: 2025, season: "spring", name: "2025 LCK 스프링" },
   ];
 
-  const teams = [
-    { rank: 1, change: "-", logo: T1, name: "T1", wl: "17W 0L", points: 32 },
-    { rank: 2, change: "-", logo: HLE, name: "HLE", wl: "14W 4L", points: 19 },
-    { rank: 3, change: "-", logo: GEN, name: "GEN", wl: "11W 7L", points: 13 },
-    { rank: 4, change: "-", logo: DK, name: "DK", wl: "9W 9L", points: 6 },
-    { rank: 5, change: "-", logo: KT, name: "KT", wl: "8W 10L", points: -2 },
-    { rank: 6, change: "-", logo: BFX, name: "BFX", wl: "11W 7L", points: 13 },
-    { rank: 7, change: "-", logo: DNF, name: "DNF", wl: "11W 7L", points: 13 },
-    { rank: 8, change: "-", logo: NS, name: "NS", wl: "11W 7L", points: 13 },
-    { rank: 9, change: "-", logo: DRX, name: "DRX", wl: "11W 7L", points: 13 },
-    { rank: 10, change: "-", logo: BRO, name: "BRO", wl: "11W 7L", points: 13 },
-  ];
-
   useEffect(() => {
     const getRankingData = async () => {
       const data = await fetchRankings(
