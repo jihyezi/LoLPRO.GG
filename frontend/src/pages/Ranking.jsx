@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { fetchRankings } from "../api/rankingApi";
@@ -10,19 +10,8 @@ import RankRow from "../components/Ranking/RankRow";
 import RankingHeader from "../assets/ranking.jpg";
 import down from "../assets/down.png";
 import up from "../assets/up.png";
-import HLE from "../assets/Team/HLE.png";
-import GEN from "../assets/Team/GEN.png";
-import T1 from "../assets/Team/T1.png";
-import DK from "../assets/Team/DK.png";
-import KT from "../assets/Team/KT.png";
-import BFX from "../assets/Team/BFX.png";
-import NS from "../assets/Team/NS.png";
-import DNF from "../assets/Team/DNF.png";
-import DRX from "../assets/Team/DRX.png";
-import BRO from "../assets/Team/BRO.png";
-
 const Ranking = () => {
-  const [rankref, ranlinView] = useInView({
+  const [rankRef, rankInView] = useInView({
     threshold: 0.5,
     triggerOnce: false,
   });
@@ -61,6 +50,7 @@ const Ranking = () => {
 
   useEffect(() => {
     const getRankingData = async () => {
+      setRankings([]);
       const data = await fetchRankings(
         selectedSeason.year,
         selectedSeason.season
@@ -87,6 +77,24 @@ const Ranking = () => {
     setSelectedSeason(season);
     setDropdownOpen(false);
   };
+
+  const dropdownRef = useRef(null);
+  useEffect(() => {
+    if (dropdownRef.current && dropdownOpen) {
+      const selectedIndex = seasons.findIndex(
+        (season) =>
+          season.year === selectedSeason.year &&
+          season.season === selectedSeason.season
+      );
+      const selectedElement = dropdownRef.current.children[selectedIndex];
+      if (selectedElement) {
+        selectedElement.scrollIntoView({
+          // behavior: "smooth",
+          block: "nearest",
+        });
+      }
+    }
+  }, [dropdownOpen, selectedSeason]);
 
   return (
     <div className={styles.RankingContainer} onClick={handleBackgroundClick}>
@@ -115,11 +123,17 @@ const Ranking = () => {
             />
           </div>
           {dropdownOpen && (
-            <div className={styles.dropdownMenu}>
+            <div className={styles.dropdownMenu} ref={dropdownRef}>
               {seasons.map((season, index) => (
                 <div
                   key={index}
-                  className={styles.dropdownItem}
+                  // className={styles.dropdownItem}
+                  className={`${styles.dropdownItem} ${
+                    selectedSeason.year === season.year &&
+                    selectedSeason.season === season.season
+                      ? styles.selected
+                      : ""
+                  }`}
                   onClick={() => handleSeasonSelect(season)}
                 >
                   {season.name}
@@ -130,9 +144,9 @@ const Ranking = () => {
           <div className={styles.rankContainer}>
             <motion.div
               className={styles.rankBox}
-              ref={rankref}
+              ref={rankRef}
               initial={{ opacity: 0, y: 50 }}
-              animate={ranlinView ? { opacity: 1, y: 0 } : {}}
+              animate={rankInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
               <ul className={styles.rankList}>
@@ -144,12 +158,13 @@ const Ranking = () => {
                 </li>
                 {rankings.map((team) => (
                   <RankRow
-                    key={team.rank}
+                    key={`${team.rank}-${team.teamName}`}
                     rank={team.rank}
-                    teamLogo={team.logo}
                     teamName={team.teamName}
                     setWins={team.wins}
                     setLosses={team.losses}
+                    year={selectedSeason.year}
+                    season={selectedSeason.season}
                   />
                 ))}
               </ul>

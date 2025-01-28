@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { fetchMatches } from "../api/matchApi";
 import Header from "../components/Home/Header";
-import styles from "./Schedule.module.css";
+import styles from "./Match.module.css";
 import TeamFilters from "../components/Schedule/TeamFilters";
 
 // Images
@@ -21,37 +22,42 @@ import leftArrow from "../assets/Home/leftArrow.png";
 import rightArrow from "../assets/Home/rightArrow.png";
 import calendar from "../assets/calendar.png";
 
-const Schedule = () => {
-  const [scheduleref, schedulelinView] = useInView({
+const Match = () => {
+  const [matchRef, matchInView] = useInView({
     threshold: 0.5,
     triggerOnce: false,
   });
 
   const [currentDate, setCurrentDate] = useState(new Date(2025, 0));
   const [selectedTeam, setSelectedTeam] = useState("전체");
+  const [activeEvent, setActiveEvent] = useState(null);
   const teams = [
     { logo: MENU, name: "전체" },
     { logo: T1, name: "T1" },
     { logo: HLE, name: "HLE" },
     { logo: GEN, name: "GEN" },
-    { logo: DK, name: "DK" },
-    { logo: KT, name: "KT" },
-    { logo: BFX, name: "BFX" },
-    { logo: DNF, name: "DNF" },
+    { logo: DK, name: "Dplus KIA" },
+    { logo: KT, name: "KT Rolster" },
+    { logo: BFX, name: "BNK FearX" },
+    { logo: DNF, name: "DN Freecs" },
     { logo: NS, name: "NS" },
     { logo: DRX, name: "DRX" },
-    { logo: BRO, name: "BRO" },
+    { logo: BRO, name: "OK BRION" },
   ];
 
   const calendarRef = useRef(null);
 
-  const exampleEvents = [
-    { year: 2025, month: 0, date: 8, time: "17:00", match: "T1 vs KT" },
-    { year: 2025, month: 0, date: 9, time: "19:00", match: "HLE vs GEN" },
-    { year: 2025, month: 0, date: 9, time: "21:00", match: "T1 vs BRO" },
-    { year: 2025, month: 0, date: 12, time: "15:00", match: "T1 vs BFX" },
-    { year: 2025, month: 1, date: 12, time: "15:00", match: "T1 vs BFX" },
-  ];
+  const [matches, setMatches] = useState([]);
+
+  useEffect(() => {
+    const getMatchData = async () => {
+      setMatches([]);
+      const year = currentDate.getFullYear();
+      const data = await fetchMatches(year);
+      setMatches(data);
+    };
+    getMatchData();
+  }, [currentDate.getFullYear()]);
 
   const handlePrevMonth = () => {
     setCurrentDate(
@@ -71,7 +77,15 @@ const Schedule = () => {
 
   useEffect(() => {
     generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
-  }, [currentDate, selectedTeam]);
+  }, [selectedTeam, matches, currentDate]);
+
+  const filteredMatches = matches.filter((match) => {
+    if (selectedTeam === "전체") {
+      return true;
+    }
+    const teamsInMatch = match.id.split(" vs ");
+    return teamsInMatch.some((team) => team.includes(selectedTeam));
+  });
 
   const generateCalendar = (year, month) => {
     if (!calendarRef.current) return;
@@ -108,32 +122,31 @@ const Schedule = () => {
 
     calendarBody.innerHTML = html;
 
-    const filteredEvents = exampleEvents.filter((event) => {
-      if (selectedTeam === "전체") return true;
-      return event.match.includes(selectedTeam);
-    });
+    filteredMatches.forEach((match) => {
+      const matchDate = new Date(match.matchDate);
+      const matchDay = matchDate.getDate();
 
-    filteredEvents.forEach((event) => {
       const cells = calendarBody.querySelectorAll("td");
       cells.forEach((cell) => {
         const cellDate =
           cell.firstChild && parseInt(cell.firstChild.textContent);
         if (
-          cellDate === event.date &&
-          month === event.month &&
-          year === event.year
+          cellDate === matchDay &&
+          month === matchDate.getMonth() &&
+          year === matchDate.getFullYear()
         ) {
           const eventDiv = document.createElement("div");
           eventDiv.classList.add("event");
+          eventDiv.style.cursor = "pointer";
 
-          const timeSpan = document.createElement("span");
-          timeSpan.textContent = event.time;
-          timeSpan.style.marginRight = "10px";
+          // const timeSpan = document.createElement("span");
+          // timeSpan.textContent = event.time;
+          // timeSpan.style.marginRight = "10px";
 
           const matchSpan = document.createElement("span");
-          matchSpan.textContent = event.match;
+          matchSpan.textContent = match.matchSummary;
 
-          eventDiv.appendChild(timeSpan);
+          // eventDiv.appendChild(timeSpan);
           eventDiv.appendChild(matchSpan);
 
           eventDiv.style.backgroundColor = "#8e69f4";
@@ -143,6 +156,7 @@ const Schedule = () => {
           eventDiv.style.textAlign = "center";
           eventDiv.style.fontWeight = "500";
           eventDiv.style.fontSize = "14px";
+          eventDiv.onclick = () => handleEventClick(match, eventDiv);
 
           let eventContainer = cell.querySelector(".event-container");
           if (!eventContainer) {
@@ -159,6 +173,49 @@ const Schedule = () => {
         }
       });
     });
+  };
+
+  const handleEventClick = (match, eventDiv) => {
+    const matchSummary = match.matchSummary;
+    const teams = matchSummary.split(" vs ");
+
+    const matchResult = match.matchResult;
+    const results = matchResult.split(" - ");
+
+    const eventId = match.matchSummary;
+
+    const currentActiveEvent = activeEvent;
+    const isActive = currentActiveEvent === eventId;
+
+    if (isActive) {
+      eventDiv.style.backgroundColor = "#8e69f4";
+      eventDiv.innerHTML = `<span style="color: white;">${matchSummary}</span>`;
+      setActiveEvent(null);
+    } else {
+      eventDiv.style.backgroundColor = "white";
+      eventDiv.style.fontWeight = "600";
+      const baronTeam = teams[0];
+      const baronResult = parseInt(results[0], 10);
+      const elderDragonTeam = teams[1];
+      const elderDragonResult = parseInt(results[1], 10);
+
+      const baronColor =
+        baronResult > elderDragonResult ? "#00920E" : "#BC4247";
+      const elderDragonColor =
+        elderDragonResult > baronResult ? "#00920E" : "#BC4247";
+
+      eventDiv.innerHTML = `
+        <span style="color: ${baronColor};">${baronTeam} ${baronResult}</span>
+        <span style="color: #3C3C41;"> / </span>
+        <span style="color: ${elderDragonColor};">${elderDragonResult} ${elderDragonTeam}</span>`;
+
+      setActiveEvent(eventId);
+    }
+  };
+
+  const handleTeamSelect = (teamName) => {
+    setSelectedTeam(teamName);
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
   };
 
   const scrollContainerRef = useRef(null);
@@ -185,17 +242,17 @@ const Schedule = () => {
   };
 
   return (
-    <div className={styles.ScheduleContainer}>
+    <div className={styles.matchContainer}>
       <Header />
-      {/* <div className={styles.ScheduleWrapper}> */}
+      {/* <div className={styles.matchWrapper}> */}
       <motion.div
         className={styles.rankBox}
-        ref={scheduleref}
+        ref={matchRef}
         initial={{ opacity: 0, y: 50 }}
-        animate={schedulelinView ? { opacity: 1, y: 0 } : {}}
+        animate={matchInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        <div className={styles.ScheduleHeader}>
+        <div className={styles.matchHeader}>
           <img
             style={{ marginRight: "20px" }}
             src={leftArrow}
@@ -234,9 +291,7 @@ const Schedule = () => {
                 key={team.name}
                 teamLogo={team.logo}
                 teamName={team.name}
-                onFilterSelect={(teamName) => {
-                  setSelectedTeam(teamName);
-                }}
+                onFilterSelect={handleTeamSelect}
                 isSelected={selectedTeam === team.name}
               />
             ))}
@@ -261,4 +316,4 @@ const Schedule = () => {
   );
 };
 
-export default Schedule;
+export default Match;

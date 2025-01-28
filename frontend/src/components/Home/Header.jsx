@@ -11,7 +11,7 @@ const Header = () => {
 
   const menuItems = [
     { name: "홈", href: "/" },
-    { name: "일정", href: "/schedule" },
+    { name: "일정", href: "/match" },
     { name: "순위", href: "/ranking" },
     { name: "승부예측", href: "/prediction" },
   ];
