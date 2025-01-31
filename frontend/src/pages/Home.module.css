@@ -1,379 +1,380 @@
 .homeContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: #151515;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #151515;
+  position: relative;
 }
 
 .onBoarding1 {
-    width: 100%;
-    height: 600px;
-    margin-top: 60px; 
-    background-image: url('../assets/Home/jinx.png');
-    background-size: cover;
-    background-position: center center; 
-    position: relative;
+  width: 100%;
+  height: 600px;
+  margin-top: 60px;
+  background-image: url("../assets/Home/jinx.png");
+  background-size: cover;
+  background-position: center center;
+  position: relative;
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    max-width: 480px;
-    padding: 54px 80px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  padding: 54px 80px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
 
 .contentBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    text-align: center; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
 }
 
 .title {
-    color: #8E69F4;
-    align-self: flex-start; 
-    font-weight: 700;
-    font-size: 20px;
-    margin: 0;
+  color: #8e69f4;
+  align-self: flex-start;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0;
 }
 
 .description {
-    color: #ffffff;
-    text-align: center;
-    font-weight: 700;
-    font-size: 30px;
-    margin: 12px 0 0 0;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700;
+  font-size: 30px;
+  margin: 12px 0 0 0;
 }
 
 .ctaButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #8E69F4;
-    color: #ffffff;
-    font-weight: 700;
-    text-align: center;
-    width: 160px;
-    height: 40px;
-    border-radius: 30px;
-    margin-top: 25px; 
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #8e69f4;
+  color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+  width: 160px;
+  height: 40px;
+  border-radius: 30px;
+  margin-top: 25px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  cursor: pointer;
 }
 
 .onBoarding2 {
-    width: 100%;
-    height: 600px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
 }
 
 .lckTeamContainer {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 500px;
-    gap: 30px;
-    margin-left: 100px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  gap: 30px;
+  margin-left: 100px;
 }
 
 .lckContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 20px;
 }
 
 .lcklogoimg {
-    width: 50px;
-    height: 30px;
+  width: 50px;
+  height: 30px;
 }
 
 .lcktext {
-    color: #ffffff;
-    font-size: 32px;
-    font-weight: 700;
-    margin: 0;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
 }
 
 .lcktext::before {
-    display: inline-block;
-    width: 1px;
-    height: 14px;
-    margin: 0 20px;
-    border-radius: 1px;
-    vertical-align: middle;
-    background-color: rgb(255, 255, 255);
-    content: "";
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  margin: 0 20px;
+  border-radius: 1px;
+  vertical-align: middle;
+  background-color: rgb(255, 255, 255);
+  content: "";
 }
 
 .allTeamContainer {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 10px;
-    width: 500px;
-    background-image: url('../assets/Home/teamBackground.png');
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-    box-sizing: border-box;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 10px;
+  width: 500px;
+  background-image: url("../assets/Home/teamBackground.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
 }
 
 .teamBox {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .teamLogo {
-    width: 80px;
-    height: 90px;
-    object-fit: contain;
+  width: 80px;
+  height: 90px;
+  object-fit: contain;
 }
 
 .scheduleContainer {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    margin-left: 120px;
-    height: 550px;
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 120px;
+  height: 550px;
 }
 
 .wrapper2 {
-    display: flex;
-    flex-direction: column;
-    max-width: 480px;
-    padding: 54px 80px;
-    margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  padding: 54px 80px;
+  margin-top: 30px;
 }
 
 .todayMatchContainer {
-    background-color: #31313C;
-    width: 380px;
-    height: 120px;
-    border-radius: 40px;
-    padding: 20px 20px;
+  background-color: #31313c;
+  width: 380px;
+  height: 120px;
+  border-radius: 40px;
+  padding: 20px 20px;
 }
 
 .todaytext {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 700;
-    padding: 0 10px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 0 10px;
 }
 
 .matchBox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .arrowImg {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 .matchTeam {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .teamImg {
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
 }
 
 .teamName {
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .centerContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .timeBox {
-    width: 70px;
-    height: 26px;
-    background-color: #8E69F4;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 70px;
+  height: 26px;
+  background-color: #8e69f4;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .timeText {
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 14px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .vsText {
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 24px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 24px;
 }
 
 .OnBoarding3 {
-    width: 100%;
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    overflow: hidden;
-    background-image: url('../assets/Home/nocturne.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    box-sizing: border-box;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  overflow: hidden;
+  background-image: url("../assets/Home/nocturne.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
 }
 
 .rankContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 150px;
 }
 
 .rankBox {
-    width: 350px;
-    height: 240;
-    background-color: #31313C;
-    border-radius: 20px;
+  width: 350px;
+  height: 240;
+  background-color: #31313c;
+  border-radius: 20px;
 }
 
 .rankList {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
-    width: 350px;
-    height: 240;
-    padding: 0px;
-    margin: 0
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  width: 350px;
+  height: 240;
+  padding: 0px;
+  margin: 0;
 }
 
 .rankHeader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    list-style: none;
-    padding: 0 10px;
-    margin: 0;
-    border-bottom: 1px solid #151515;
-    height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  padding: 0 10px;
+  margin: 0;
+  border-bottom: 1px solid #151515;
+  height: 60px;
 }
 
 .headerRank {
-    color: #C0C0C0;
-    font-size: 14px;
-    font-weight: 700;
-    width: 50px;
-    text-align: center;
+  color: #c0c0c0;
+  font-size: 14px;
+  font-weight: 700;
+  width: 50px;
+  text-align: center;
 }
 
 .headerTeam {
-    color: #C0C0C0;
-    font-size: 14px;
-    font-weight: 700;
-    width: 110px;
-    padding-left: 30px;
+  color: #c0c0c0;
+  font-size: 14px;
+  font-weight: 700;
+  width: 110px;
+  padding-left: 30px;
 }
 
 .headerWL {
-    color: #C0C0C0;
-    font-size: 14px;
-    font-weight: 700;
-    width: 80px;
-    text-align: center;
+  color: #c0c0c0;
+  font-size: 14px;
+  font-weight: 700;
+  width: 80px;
+  text-align: center;
 }
 
 .headerPoints {
-    color: #C0C0C0;
-    font-size: 14px;
-    font-weight: 700;
-    width: 60px;
-    text-align: center;
+  color: #c0c0c0;
+  font-size: 14px;
+  font-weight: 700;
+  width: 60px;
+  text-align: center;
 }
 
 .rankRow {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    list-style: none;
-    padding: 0 10px;
-    margin: 0;
-    border-bottom: 1px solid #151515;
-    height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  padding: 0 10px;
+  margin: 0;
+  border-bottom: 1px solid #151515;
+  height: 60px;
 }
 
 .rankNumber {
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
-    width: 30px;
-    text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  width: 30px;
+  text-align: center;
 }
 
 .rankChange {
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
-    width: 30px;
-    text-align: center;
+  color: #31313c;
+  font-size: 16px;
+  font-weight: 700;
+  width: 30px;
+  text-align: center;
 }
 
 .rankTeamBox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
-    width: 130px;
-    margin-left: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  width: 130px;
+  margin-left: 5px;
 }
 
 .rankTeam {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .wlRecord {
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
-    width: 80px;
-    text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  width: 80px;
+  text-align: center;
 }
 
 .teamPoints {
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
-    width: 60px;
-    text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  width: 60px;
+  text-align: center;
 }

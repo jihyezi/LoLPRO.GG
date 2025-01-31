@@ -156,7 +156,8 @@ const Match = () => {
           eventDiv.style.textAlign = "center";
           eventDiv.style.fontWeight = "500";
           eventDiv.style.fontSize = "14px";
-          eventDiv.onclick = () => handleEventClick(match, eventDiv);
+          if (match.matchVictory !== "N/A" && match.matchDefeat !== "N/A")
+            eventDiv.onclick = () => handleEventClick(match, eventDiv);
 
           let eventContainer = cell.querySelector(".event-container");
           if (!eventContainer) {
