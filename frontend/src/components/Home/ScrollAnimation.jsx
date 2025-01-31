@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
-import styles from "../../pages/Home.module.css";
+import styles from "pages/Home.module.css";
 
 const ScrollAnimation = ({ title, description, button }) => {
   return (

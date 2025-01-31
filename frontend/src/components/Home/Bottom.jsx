@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Bottom.module.css";
 
-import logo from "../../assets/Home/logo.png";
-import git from "../../assets/Home/git.png";
+import logo from "assets/Home/logo.png";
+import git from "assets/Home/git.png";
 
 const Bottom = () => {
     return (

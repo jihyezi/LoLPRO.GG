@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { fetchRankings } from "../api/rankingApi";
 import styles from "./Ranking.module.css";
-import Header from "../components/Home/Header";
-import RankRow from "../components/Ranking/RankRow";
+import Header from "components/Home/Header";
+import RankRow from "components/Ranking/RankRow";
 
 // Images
-import RankingHeader from "../assets/ranking.jpg";
-import down from "../assets/down.png";
-import up from "../assets/up.png";
+import RankingHeader from "assets/ranking.jpg";
+import down from "assets/down.png";
+import up from "assets/up.png";
 const Ranking = () => {
   const [rankRef, rankInView] = useInView({
     threshold: 0.5,

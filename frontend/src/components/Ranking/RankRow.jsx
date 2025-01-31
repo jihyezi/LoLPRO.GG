@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "../../pages/Ranking.module.css";
-import logo from "../../assets/logos/2025_spring_T1.png";
+import styles from "pages/Ranking.module.css";
+import logo from "assets/logos/2025_spring_T1.png";
 
 const RankRow = ({
   rank,
