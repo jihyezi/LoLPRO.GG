@@ -1,0 +1,244 @@
+.RankingContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #151515;
+  position: relative;
+  margin-top: 60px;
+}
+
+.RankingHeader {
+  /* width: 1440px; */
+  height: 240px;
+  object-fit: contain;
+}
+
+.RankingWrapper {
+  margin: 50px 200px;
+}
+
+.title {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.subtitle {
+  color: #bababa;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.seasonContainer {
+  margin-top: 40px;
+}
+.seasonTitle {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.downImg {
+  width: 24px;
+  height: 24px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.rankContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  color: #ffffff;
+}
+
+.rankBox {
+  /* width: 1000px; */
+  height: 240;
+  background-color: #31313c;
+  border-radius: 20px;
+}
+
+.rankList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  /* width: 350px; */
+  height: 240;
+  padding: 0px;
+  margin: 0;
+}
+
+.rankHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0 10px;
+  margin: 0;
+  border-bottom: 1px solid #151515;
+  height: 60px;
+}
+
+.headerRank {
+  color: #c0c0c0;
+  font-size: 14px;
+  font-weight: 700;
+  width: 50px;
+  text-align: center;
+}
+
+.headerTeam {
+  color: #c0c0c0;
+  font-size: 14px;
+  font-weight: 700;
+  width: 110px;
+  padding-left: 30px;
+}
+
+.headerWL {
+  color: #c0c0c0;
+  font-size: 14px;
+  font-weight: 700;
+  width: 80px;
+  text-align: center;
+  margin-left: auto;
+}
+
+.headerPoints {
+  color: #c0c0c0;
+  font-size: 14px;
+  font-weight: 700;
+  width: 60px;
+  text-align: center;
+}
+
+.rankRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0 10px;
+  margin: 0;
+  border-bottom: 1px solid #151515;
+  height: 60px;
+}
+
+.rankNumber {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  width: 30px;
+  text-align: center;
+}
+
+.rankChange {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  width: 30px;
+  text-align: center;
+}
+
+.rankTeamBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  /* width: 130px; */
+  margin-left: 5px;
+}
+
+.rankTeam {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.teamName {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.wlRecord {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  width: 80px;
+  text-align: center;
+  margin-left: auto;
+}
+
+.teamPoints {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  width: 60px;
+  text-align: center;
+}
+
+.dropdownMenu {
+  position: absolute;
+  width: 250px;
+  max-height: 300px;
+  border: 1.5px solid #b6b6b6;
+  border-radius: 8px;
+  background-color: white;
+  z-index: 1000;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.dropdownItem {
+  padding: 20px;
+  cursor: pointer;
+  color: #c0c0c0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dropdownItem:hover {
+  color: #151515;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #f1f1f1;
+}
+
+.selected {
+  color: #0ac8b9;
+  font-size: 16px;
+  font-weight: 700;
+  /* background-color: #f1f1f1; */
+}
+
+.selected:hover {
+  color: #0ac8b9;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

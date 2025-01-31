@@ -1,0 +1,33 @@
+name: Monitor Updates
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  monitor-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Run Monitor
+        env:
+          LOLPRO_TOKEN: ${{ secrets.LOLPRO_TOKEN }}
+        env:
+          LOLPRO_TOKEN: ${{ secrets.LOLPRO_TOKEN }}
+        run: |
+          cd backend
+          node monitor.js
