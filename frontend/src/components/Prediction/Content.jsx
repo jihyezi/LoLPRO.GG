@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import app from "../../firebase";
+import { getFirestore, getDocs, doc, collection } from "firebase/firestore";
 import styles from "./Content.module.css"
 
 // Images
@@ -14,78 +16,54 @@ import DRX from "assets/Team/DRX.png";
 import BRO from "assets/Team/BRO.png";
 
 const Content = ({ weekNumber }) => {
+    const db = getFirestore(app);
 
-    const initialGameData = {
-        1: [
-            {
-                date: "2025-01-15",
-                time: "17:00",
-                teamA: ["BRO", BRO],
-                teamB: ["DRX", DRX],
-                percent: ["73", "27"],
-                result: ["2", "1"],
-                matchStatus: false,
-                inVoted: null
-            },
-            {
-                date: "2025-01-15",
-                time: "19:00",
-                teamA: ["DNF", DNF],
-                teamB: ["NS", NS],
-                percent: ["66", "34"],
-                result: ["0", "2"],
-                matchStatus: false,
-                inVoted: "teamB"
-            },
-            {
-                date: "2025-01-15",
-                time: "19:00",
-                teamA: ["HLE", HLE],
-                teamB: ["GEN", GEN],
-                percent: ["49", "51"],
-                result: ["1", "2"],
-                matchStatus: false,
-                inVoted: "teamA"
-            },
-            {
-                date: "2025-01-16",
-                time: "17:00",
-                teamA: ["BFX", BFX],
-                teamB: ["KT", KT],
-                percent: [73, 27],
-                result: null,
-                matchStatus: true,
-                inVoted: "teamA"
-            },
-            {
-                date: "2025-01-16",
-                time: "19:00",
-                teamA: ["T1", T1],
-                teamB: ["DK", DK],
-                percent: [73, 27],
-                result: null,
-                matchStatus: true,
-                inVoted: null
-            },
-        ]
-    }
-
-    const [gameData, setGameData] = useState(initialGameData);
-
-    const handleTeamClick = (week, gameIndex, team) => {
-        setGameData((prevGameData) => {
-            const updatedWeekData = [...prevGameData[week]];
-            updatedWeekData[gameIndex] = {
-                ...updatedWeekData[gameIndex],
-                inVoted: team,
-            };
-            return {
-                ...prevGameData,
-                [week]: updatedWeekData,
-            };
-        });
+    const teamLogos = {
+        HLE, GEN, T1, DK, KT, BFX, NS, DNF, DRX, BRO,
     };
 
+    const [gameData, setGameData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchGameData = async () => {
+            try {
+                const weekRef = collection(db, "matchs", "lck_cup", `week${weekNumber}`);
+                const querySnapshot = await getDocs(weekRef);
+
+                // 모든 match 데이터를 배열로 변환
+                const data = querySnapshot.docs.map((doc) => ({
+                    id: doc.id, // match01, match02 같은 ID
+                    ...doc.data(),
+                }));
+                setGameData(data); // 상태에 저장
+                console.log(data); // 데이터 확인
+                console.log(weekNumber); // 데이터 확인
+                console.log(gameData)
+            } catch (error) {
+                console.error("Error fetching game data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchGameData();
+    }, [weekNumber, db]);
+
+    if (gameData.length === 0) {
+        return <div>No games found for this week.</div>;
+    }
+
+    const handleTeamClick = (gameIndex, team) => {
+        setGameData(prevGameData => {
+            const updatedGames = [...prevGameData];
+            updatedGames[gameIndex] = {
+                ...updatedGames[gameIndex],
+                inVoted: team,
+            };
+            return updatedGames;
+        });
+    };
     const getVoteStatus = (game) => {
         if (!game.result) {
             return "예측진행중";
@@ -99,11 +77,9 @@ const Content = ({ weekNumber }) => {
         return "미참여";
     };
 
-    const currentWeekData = gameData[weekNumber] || [];
-
     return (
         <div className={styles.contentContainer}>
-            {currentWeekData.map((game, index) => {
+            {gameData.map((game, index) => {
                 const voteStatus = getVoteStatus(game);
                 const showPercent = game.inVoted || game.result;
                 const initialState = !game.inVoted && !game.result;
@@ -138,10 +114,12 @@ const Content = ({ weekNumber }) => {
                     }
                 };
 
+
+
                 return (
                     <div key={index} className={styles.contentWrapper}>
                         <div className={styles.InfoBox}>
-                            <span className={styles.dateText}>{game.date}</span>
+                            <span className={styles.dateText}>{game.date ? new Date(game.date.seconds * 1000).toLocaleDateString() : "N/A"}</span>
                             <span className={styles.dateText}>(수)</span>
                             <span className={styles.dateText}>{game.time}</span>
                             <div
