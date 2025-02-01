@@ -36,11 +36,11 @@
     font-weight: 700;
     margin-left: 10px;
 }
-.voteText[status="true"] {
+.voteText[status="예측진행중"] {
     background-color: #FF3838;
     color: #FFD0D0;
 }
-.voteText[success="true"] {
+.voteText[status="예측성공"] {
     background-color: #8E69F4;
     color: #ffffff;
 }
@@ -63,16 +63,20 @@
     align-items: center;
     justify-content: start;
 }
-.predictionLeft[game-invote="true"] {
-    width: 50%;
-    flex: 1;
-    height: 82px;
-    border-radius: 10px 0 0 10px;
+.predictionLeft[status="voted"] {
     background-color: #8E69F4;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
+}
+.predictionLeft[status="notVoted"] {
+    background-color: #31313C;
+}
+.predictionLeft[status="success"] {
+    background-color: #8E69F4;
+}
+.predictionLeft[status="fail"] {
+    background-color: #25252B;
+}
+.predictionLeft[status="noVoteResult"] {
+    background-color: #31313C;
 }
 
 .predictionRight {
@@ -87,22 +91,26 @@
     align-items: center;
     justify-content: end;
 }
-.predictionRight[game-invote="true"] {
-    width: 50%;
-    flex: 1;
-    height: 82px;
-    border-radius: 0 10px 10px 0;
+.predictionRight[status="voted"] {
     background-color: #8E69F4;
-    margin-left: 1px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: end;
+}
+.predictionRight[status="notVoted"] {
+    background-color: #31313C;
+}
+.predictionRight[status="success"] {
+    background-color: #8E69F4;
+}
+.predictionRight[status="fail"] {
+    background-color: #25252B;
+}
+.predictionRight[status="noVoteResult"] {
+    background-color: #31313C;
 }
 
 .matchInfoBox {
     display: flex;
     flex-direction: column;
+    width: 70px;
     gap: 4px;
 }
 
@@ -110,6 +118,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    width: 70px;
     margin-right: 8px;
 }
 
@@ -135,38 +144,57 @@
     margin-left: 10px;
 }
 .teamText1[status="voted"] {
-    color: #ffffff; 
+    color: #ffffff;
+    font-size: 16px;
+}
+.teamText1[status="notVoted"] {
+    color: #ffffff;
+    font-size: 20px;
 }
 .teamText1[status="success"] {
     color: #ffffff;
+    font-size: 16px;
 }
 .teamText1[status="fail"] {
     color: #A1A1A1;
+    font-size: 16px;
 }
-.teamText1[win="true"] {
-    color: #ffffff; 
-}
-.teamText1[initial="true"] {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 700;
-    margin-left: 10px;
+.teamText1[status="noVoteResult"] {
+    color: #A1A1A1;
+    font-size: 16px;
 }
 
-.percent {
+
+.percent1 {
     color: #A1A1A1;
     font-size: 24px;
     font-weight: 700;
     margin-left: 10px;
 }
-.percent[status="voted"] {
+.percent1[status="success"] {
     color: #ffffff;
 }
-.percent[status="success"] {
+.percent1[status="voted"] {
     color: #ffffff;
 }
-.percent[win="true"] {
+.percent1[status="fail"] {
+    color: #A1A1A1;
+}
+
+.percent2 {
+    color: #A1A1A1;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: end;
+}
+.percent2[status="success"] {
     color: #ffffff;
+}
+.percent2[status="voted"] {
+    color: #ffffff;
+}
+.percent2[status="fail"] {
+    color: #A1A1A1;
 }
 
 .teamText2 {
@@ -177,18 +205,23 @@
 }
 .teamText2[status="voted"] {
     color: #ffffff;
+    font-size: 16px;
+}
+.teamText2[status="notVoted"] {
+    color: #ffffff;
+    font-size: 20px;
 }
 .teamText2[status="success"] {
     color: #ffffff;
+    font-size: 16px;
 }
-.teamText2[win="true"] {
-    color: #ffffff;
+.teamText2[status="fail"] {
+    color: #A1A1A1;
+    font-size: 16px;
 }
-.teamText2[initial="true"] {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 700;
-    text-align: end;
+.teamText2[status="noVoteResult"] {
+    color: #A1A1A1;
+    font-size: 16px;
 }
 
 .scoreText1 {
@@ -197,15 +230,16 @@
     font-weight: 700;
     text-align: end;
     margin-left: 260px;
-}
-.scoreText1[status="voted"] {
-    color: #ffffff;
+    width: 15px;
 }
 .scoreText1[status="success"] {
     color: #ffffff;
 }
-.scoreText1[win="true"] {
+.scoreText1[status="voted"] {
     color: #ffffff;
+}
+.scoreText1[status="fail"] {
+    color: #A1A1A1;
 }
 
 .scoreText2 {
@@ -213,17 +247,17 @@
     font-size: 24px;
     font-weight: 700;
     text-align: end;
-    margin-right: 260px;
-}
-.scoreText2[status="voted"] {
-    color: #ffffff;
+    margin-right: 255px;
+    width: 15px;
 }
 .scoreText2[status="success"] {
     color: #ffffff;
 }
-.scoreText2[win="true"] {
+.scoreText2[status="voted"] {
     color: #ffffff;
 }
-
+.scoreText2[status="fail"] {
+    color: #A1A1A1;
+}
 
 
