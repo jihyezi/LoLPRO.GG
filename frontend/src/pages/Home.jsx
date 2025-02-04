@@ -7,6 +7,7 @@ import Header from "components/Home/Header";
 import Bottom from "components/Home/Bottom";
 import ScrollAnimation from "components/Home/ScrollAnimation";
 import { fetchRankings } from "api/rankingApi";
+import { fetchMatches } from "api/matchApi";
 
 // Images
 import lcklogo from "assets/Home/lcklogo.png";
@@ -22,6 +23,18 @@ import DRX from "assets/Team/DRX.png";
 import BRO from "assets/Team/BRO.png";
 import leftArrow from "assets/Home/leftArrow.png";
 import rightArrow from "assets/Home/rightArrow.png";
+
+const teamAbbreviations = {
+  "Gen.G eSports": "GEN",
+  "Hanwha Life eSports": "HLE",
+  "Nongshim RedForce": "NS",
+};
+
+const teamAbbreviationss = {
+  GEN: "Gen.G eSports",
+  HLE: "Hanwha Life eSports",
+  NS: "Nongshim RedForce",
+};
 
 const Home = () => {
   const [lckTeamref, lckTeaminView] = useInView({
@@ -39,6 +52,11 @@ const Home = () => {
 
   const [rankings, setRankings] = useState([]);
 
+  const [currentDate, setCurrentDate] = useState(new Date(2025, 1, 1));
+  const [currentMatch, setCurrentMatch] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [matches, setMatches] = useState([]);
+
   useEffect(() => {
     const getRankingData = async () => {
       setRankings([]);
@@ -48,11 +66,37 @@ const Home = () => {
     };
 
     getRankingData();
-    console.log("rankings", rankings);
   }, []);
 
-  const handleRankClick = () => {
-    console.log("rankings", rankings);
+  useEffect(() => {
+    const getMatchData = async () => {
+      setMatches([]);
+      const year = currentDate.getFullYear();
+      const data = await fetchMatches(year);
+      setMatches(data);
+    };
+    getMatchData();
+  }, [currentDate]);
+
+  const getTeamLogo = (teamName) => {
+    const formattedName = teamName.replace(/[\s.]/g, "_");
+    return require(`assets/logos/2025_spring_${formattedName}.png`);
+  };
+
+  const todayMatches = matches.filter(
+    (match) => match.matchDate === currentDate.toISOString().split("T")[0]
+  );
+
+  const handleNextMatch = () => {
+    setDirection(1);
+    setCurrentMatch((prev) => (prev + 1) % todayMatches.length);
+  };
+
+  const handlePrevMatch = () => {
+    setDirection(-1);
+    setCurrentMatch(
+      (prev) => (prev - 1 + todayMatches.length) % todayMatches.length
+    );
   };
 
   return (
@@ -132,6 +176,7 @@ const Home = () => {
             description={`각 팀의 일정과 경기를 확인하며<br />승부의 순간을 함께하세요!`}
             button={"일정 확인하기"}
           />
+
           <motion.div
             className={styles.todayMatchContainer}
             ref={matchref}
@@ -139,25 +184,71 @@ const Home = () => {
             animate={matchinView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <span className={styles.todaytext}>Today Match 🔥</span>
-            <div className={styles.matchBox}>
-              <img src={leftArrow} className={styles.arrowImg} />
-              <div className={styles.matchTeam}>
-                <img src={T1} className={styles.teamImg} />
-                <span className={styles.teamName}>T1</span>
-              </div>
-              <div className={styles.centerContainer}>
-                <div className={styles.timeBox}>
-                  <span className={styles.timeText}>17:00</span>
+            {todayMatches.length > 0 ? (
+              <>
+                <span className={styles.todaytext}>Today Match 🔥</span>
+                <div className={styles.matchBox}>
+                  {todayMatches.length > 1 && (
+                    <img
+                      src={leftArrow}
+                      className={styles.arrowImg}
+                      onClick={handlePrevMatch}
+                      style={{ cursor: "pointer" }}
+                      alt="이전 경기"
+                    />
+                  )}
+                  <motion.div
+                    key={currentMatch}
+                    initial={{ x: direction === 1 ? 100 : -100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: direction === 1 ? -100 : 100, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    style={{ display: "flex", flexDirection: "row" }}
+                  >
+                    {(() => {
+                      const [teamA, teamB] =
+                        todayMatches[currentMatch].matchSummary.split(" vs ");
+                      const teamALogo = getTeamLogo(
+                        teamAbbreviationss[teamA] || teamA
+                      );
+                      const teamBLogo = getTeamLogo(
+                        teamAbbreviationss[teamB] || teamB
+                      );
+
+                      return (
+                        <>
+                          <div className={styles.matchTeam}>
+                            <img src={teamALogo} className={styles.teamImg} />
+                            <span className={styles.teamName}>{teamA}</span>
+                          </div>
+                          <div className={styles.centerContainer}>
+                            <div className={styles.timeBox}>
+                              <span className={styles.timeText}>17:00</span>
+                            </div>
+                            <span className={styles.vsText}>VS</span>
+                          </div>
+                          <div className={styles.matchTeam}>
+                            <img src={teamBLogo} className={styles.teamImg} />
+                            <span className={styles.teamName}>{teamB}</span>
+                          </div>
+                        </>
+                      );
+                    })()}
+                  </motion.div>
+                  {todayMatches.length > 1 && (
+                    <img
+                      src={rightArrow}
+                      className={styles.arrowImg}
+                      onClick={handleNextMatch}
+                      style={{ cursor: "pointer" }}
+                      alt="다음 경기"
+                    />
+                  )}
                 </div>
-                <span className={styles.vsText}>VS</span>
-              </div>
-              <div className={styles.matchTeam}>
-                <img src={KT} className={styles.teamImg} />
-                <span className={styles.teamName}>KT</span>
-              </div>
-              <img src={rightArrow} className={styles.arrowImg} />
-            </div>
+              </>
+            ) : (
+              <div className={styles.noMatchText}>오늘 경기가 없습니다</div>
+            )}
           </motion.div>
         </div>
       </div>
@@ -179,43 +270,36 @@ const Home = () => {
           >
             <ul className={styles.rankList}>
               <li className={styles.rankHeader}>
-                <div className={styles.headerRank} onClick={handleRankClick}>
-                  Rank
-                </div>
+                <div className={styles.headerRank}>Rank</div>
                 <div className={styles.headerTeam}>Team</div>
                 <div className={styles.headerWL}>W-L</div>
                 <div className={styles.headerPoints}>Point</div>
               </li>
-              <li className={styles.rankRow}>
-                <div className={styles.rankNumber}>1</div>
-                <div className={styles.rankChange}>-</div>
-                <div className={styles.rankTeamBox}>
-                  <img src={T1} className={styles.rankTeam} />
-                  <div className={styles.teamName}>{rankings[0]?.teamName}</div>
-                </div>
-                <div className={styles.wlRecord}>17W 0L</div>
-                <div className={styles.teamPoints}>32</div>
-              </li>
-              <li className={styles.rankRow}>
-                <div className={styles.rankNumber}>2</div>
-                <div className={styles.rankChange}>-</div>
-                <div className={styles.rankTeamBox}>
-                  <img src={HLE} className={styles.rankTeam} />
-                  <div className={styles.teamName}>{rankings[1]?.teamName}</div>
-                </div>
-                <div className={styles.wlRecord}>14W 4L</div>
-                <div className={styles.teamPoints}>19</div>
-              </li>
-              <li className={styles.rankRow}>
-                <div className={styles.rankNumber}>3</div>
-                <div className={styles.rankChange}>-</div>
-                <div className={styles.rankTeamBox}>
-                  <img src={GEN} className={styles.rankTeam} />
-                  <div className={styles.teamName}>{rankings[2]?.teamName}</div>
-                </div>
-                <div className={styles.wlRecord}>11W 7L</div>
-                <div className={styles.teamPoints}>13</div>
-              </li>
+              {rankings.slice(0, 3).map((team, index) => {
+                const matchWins =
+                  Math.floor(team.wins / 3) + (team.wins % 3 > 0 ? 1 : 0);
+                const matchLosses =
+                  Math.floor(team.losses / 3) + (team.losses % 3 > 0 ? 1 : 0);
+                const teamPoints = team.wins - team.losses;
+                const teamName =
+                  teamAbbreviations[team.teamName] || team.teamName;
+                const teamLogo = getTeamLogo(team.teamName);
+
+                return (
+                  <li key={index} className={styles.rankRow}>
+                    <div className={styles.rankNumber}>{index + 1}</div>
+                    <div className={styles.rankChange}>-</div>
+                    <div className={styles.rankTeamBox}>
+                      <img src={teamLogo} className={styles.rankTeam} />
+                      <div className={styles.teamName}>{teamName}</div>
+                    </div>
+                    <div className={styles.wlRecord}>
+                      {matchWins}W {matchLosses}L
+                    </div>
+                    <div className={styles.teamPoints}>{teamPoints}</div>
+                  </li>
+                );
+              })}
             </ul>
           </motion.div>
         </div>

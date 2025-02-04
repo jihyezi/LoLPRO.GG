@@ -15,7 +15,7 @@ const RankRow = ({
   const matchLosses = Math.floor(setLosses / 3) + (setLosses % 3 > 0 ? 1 : 0);
   const teamPoints = parseInt(setWins) - parseInt(setLosses);
 
-  const images = require.context("../../assets/logos", false, /\.png$/);
+  const images = require.context("assets/logos", false, /\.png$/);
   const logoPath = `./${year}_${season}_${teamName.replace(/[^\w]/g, "_")}.png`;
   let displayedLogo = logo;
 
