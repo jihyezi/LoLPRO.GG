@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Header from "components/Home/Header";
 import styles from "./Prediction.module.css";
-import Content from "components/Prediction/Content";
 import Match from "components/Prediction/Match";
 
 const Prediction = () => {
@@ -29,6 +28,8 @@ const Prediction = () => {
         if (currentDate >= startDate && currentDate <= endDate) return "경기중";
         if (currentDate > endDate) return "경기종료";
     }
+
+
 
     const handleWeekClick = (weekNumber, status) => {
         if (status !== "예정") {
@@ -82,7 +83,6 @@ const Prediction = () => {
 
                 </div>
                 <div className={styles.gameContainer}>
-                    {/* <Content weekNumber={selectedWeek} /> */}
                     <Match
                         weekNumber={selectedWeek}
                         startDate={selectedWeekObj?.startDate}

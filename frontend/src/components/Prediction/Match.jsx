@@ -18,6 +18,7 @@ import DRX from "assets/Team/DRX.png";
 import BRO from "assets/Team/BRO.png";
 
 const Match = ({ weekNumber }) => {
+    console.log(weekNumber)
     const db = getFirestore(app);
     const auth = getAuth();
     const { user, nickname } = useUser();
@@ -48,17 +49,20 @@ const Match = ({ weekNumber }) => {
         return { teamApercent, teamBpercent };
     };
 
+
     useEffect(() => {
         if (!user || !user.uid) return;
 
         const weekRef = collection(db, "matchs", "lck_cup", `week${weekNumber}`);
 
         const unsubscribeGames = onSnapshot(weekRef, async (querySnapshot) => {
+            console.log("실행됨")
             const data = querySnapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
             }));
             setGameData(data);
+            console.log("Firestore에서 가져온 경기 데이터:", data);
 
             const percentageData = {};
             for (const game of data) {
@@ -156,6 +160,7 @@ const Match = ({ weekNumber }) => {
         } else if (!game.result && currentDate < oneHourBeforeMatch) {
             return "예측진행중";
         }
+        console.log("왜안되는거야")
 
         if (game.result && userVote) {
             const { teamA_score, teamB_score } = game.result;
@@ -170,6 +175,9 @@ const Match = ({ weekNumber }) => {
         }
         return "미참여";
     }
+
+    console.log(gameData)
+    console.log(userVotes)
 
     return (
         <div className={styles.contentContainer}>

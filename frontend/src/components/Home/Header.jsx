@@ -84,12 +84,6 @@ const Header = () => {
         {dropdownOpen && user && (
           <div className={styles.dropdownMenu} onMouseLeave={closeDropdown}>
             <div className={styles.dropdownNickname}>{nickname}</div>
-            <div
-              className={styles.dropdownItem}
-              onClick={() => navigate("/profile")}
-            >
-              프로필
-            </div>
             <div className={styles.dropdownItem} onClick={handleLogout}>
               로그아웃
             </div>
