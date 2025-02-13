@@ -8,7 +8,6 @@ import Home from "./pages/Home";
 import Match from "pages/Match";
 import Ranking from "./pages/Ranking";
 import Prediction from "./pages/Prediction";
-import Content from "./components/Prediction/Content";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Header from "components/Home/Header";
@@ -38,7 +37,6 @@ const AppContent = () => {
         <Route path="/match" element={<Match />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/prediction" element={<Prediction />} />
-        <Route path="/prediction/:weekNumber" element={<Content />} />
       </Routes>
     </>
 
