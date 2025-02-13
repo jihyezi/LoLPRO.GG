@@ -84,6 +84,8 @@
 
 .dropdownNickname {
     padding: 12px 10px;
+    width: 80px;
+    overflow-wrap: break-word;
     cursor: pointer;
     color: #151515;
     font-size: 16px;

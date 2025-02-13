@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getFirestore, setDoc, doc } from "firebase/firestore";
 import app from "../firebase";
 import { motion } from "framer-motion";
 import styles from "./Login.module.css"
@@ -16,6 +17,7 @@ const Login = () => {
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
     const navigate = useNavigate();
+    const firestore = getFirestore(app);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -49,6 +51,14 @@ const Login = () => {
         try {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
+
+            await setDoc(doc(firestore, "users", user.uid), {
+                nickname: user.email.split("@")[0],
+                email: user.email,
+                createdAt: new Date(),
+            });
+
+            navigate('/');
         } catch (error) {
             setError("구글 로그인 실패. 다시 시도해주세요.")
         }
