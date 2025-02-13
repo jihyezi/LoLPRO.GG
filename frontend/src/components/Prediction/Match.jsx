@@ -18,7 +18,6 @@ import DRX from "assets/Team/DRX.png";
 import BRO from "assets/Team/BRO.png";
 
 const Match = ({ weekNumber }) => {
-    console.log(weekNumber)
     const db = getFirestore(app);
     const auth = getAuth();
     const { user, nickname } = useUser();
@@ -67,12 +66,10 @@ const Match = ({ weekNumber }) => {
 
 
     useEffect(() => {
-        if (!user || !user.uid) return;
-
         const weekRef = collection(db, "prediction", "lck_cup", `week${weekNumber}`);
 
         const unsubscribeGames = onSnapshot(weekRef, async (querySnapshot) => {
-            console.log("실행됨")
+            console.log("실행됨");
             const data = querySnapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
@@ -80,28 +77,34 @@ const Match = ({ weekNumber }) => {
             setGameData(data);
             console.log("Firestore에서 가져온 경기 데이터:", data);
 
+            // 경기 데이터 가져오고, 투표 퍼센트도 함께 업데이트
             const percentageData = {};
             for (const game of data) {
                 const percentages = await calculateVotePercentages(weekNumber, game.id);
                 percentageData[game.id] = percentages;
             }
             setVotePercentages(percentageData);
-
-            data.forEach((game) => {
-                const matchRef = doc(db, "prediction", "lck_cup", `week${weekNumber}`, game.id);
-                const voteRef = doc(collection(matchRef, "votes"), user.uid);
-
-                onSnapshot(voteRef, (voteSnapshot) => {
-                    setUserVotes((prevVotes) => ({
-                        ...prevVotes,
-                        [game.id]: voteSnapshot.exists() ? voteSnapshot.data() : null,
-                    }));
-                });
-            });
         });
 
         return () => unsubscribeGames();
-    }, [db, user, weekNumber]);
+    }, [db, weekNumber]);
+
+    // 유저가 로그인했을 때만 투표 데이터 구독
+    useEffect(() => {
+        if (!user || !user.uid || gameData.length === 0) return;
+
+        const unsubscribeVotes = gameData.map((game) => {
+            const voteRef = doc(collection(db, "prediction", "lck_cup", `week${weekNumber}`, game.id, "votes"), user.uid);
+            return onSnapshot(voteRef, (voteSnapshot) => {
+                setUserVotes((prevVotes) => ({
+                    ...prevVotes,
+                    [game.id]: voteSnapshot.exists() ? voteSnapshot.data() : null,
+                }));
+            });
+        });
+
+        return () => unsubscribeVotes.forEach((unsubscribe) => unsubscribe());
+    }, [db, user, weekNumber, gameData]);
 
 
     if (gameData.length === 0) {
@@ -196,9 +199,6 @@ const Match = ({ weekNumber }) => {
         return "미참여";
     }
 
-    console.log(gameData)
-    console.log(userVotes)
-
     return (
         <div className={styles.contentContainer}>
             {gameData.map((game, index) => {
@@ -212,7 +212,6 @@ const Match = ({ weekNumber }) => {
                 const showResult = game.result || voteStatus === "미참여"
                 const winningTeam = game.result ? game.result.teamA_score > game.result.teamB_score ? "teamA" : "teamB" : null;
                 const voteData = votePercentages[game.id] || { teamApercent: 0, teamBpercent: 0 };
-                console.log(votedTeam)
                 const getAStatus = () => {
                     if (!game.result || (game.result.teamA_score == null && game.result.teamB_score == null)) {
                         if (votedTeam === "teamA") {
@@ -229,8 +228,6 @@ const Match = ({ weekNumber }) => {
                     }
                     return "noVoteResult";
                 }
-
-                console.log(getAStatus())
                 const getBStatus = () => {
                     if (!game.result || (game.result.teamA_score == null && game.result.teamB_score == null)) {
                         if (votedTeam === "teamB") {
@@ -247,7 +244,6 @@ const Match = ({ weekNumber }) => {
                     }
                     return "noVoteResult";
                 }
-                console.log(getBStatus())
 
                 return (
                     <div key={index} className={styles.contenWrapper}>
@@ -265,7 +261,13 @@ const Match = ({ weekNumber }) => {
                         <div className={styles.predictionBox}>
                             <div
                                 className={styles.predictionLeft}
-                                onClick={voteStatus === "예측진행중" ? () => updateVote(weekNumber, game.id, "teamA") : null}
+                                onClick={() => {
+                                    if (voteStatus === "예측진행중" && user) {
+                                        updateVote(weekNumber, game.id, "teamA");
+                                    } else {
+                                        alert("로그인이 필요한 서비스입니다.");
+                                    }
+                                }}
                                 status={getAStatus()}
                                 style={{ pointerEvents: voteStatus === "예측진행중" ? "auto" : "none" }}
                             >
@@ -296,7 +298,13 @@ const Match = ({ weekNumber }) => {
                             </div>
                             <div
                                 className={styles.predictionRight}
-                                onClick={voteStatus === "예측진행중" ? () => updateVote(weekNumber, game.id, "teamB") : null}
+                                onClick={() => {
+                                    if (voteStatus === "예측진행중" && user) {
+                                        updateVote(weekNumber, game.id, "teamB");
+                                    } else {
+                                        alert("로그인이 필요한 서비스입니다.");
+                                    }
+                                }}
                                 status={getBStatus()}
                                 style={{ pointerEvents: voteStatus === "예측진행중" ? "auto" : "none" }}
                             >
@@ -331,7 +339,7 @@ const Match = ({ weekNumber }) => {
 
             })}
 
-        </div>
+        </div >
     )
 }
 
