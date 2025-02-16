@@ -64,7 +64,6 @@ const Match = ({ weekNumber }) => {
         return { teamApercent, teamBpercent };
     };
 
-
     useEffect(() => {
         const weekRef = collection(db, "prediction", "lck_cup", `week${weekNumber}`);
 
@@ -143,7 +142,6 @@ const Match = ({ weekNumber }) => {
             console.error("Error updating vote:", error);
         }
     };
-
 
     const getFormattedDate = (dateString) => {
         if (!dateString) return { date: "", dayOfWeek: "" };
@@ -336,9 +334,7 @@ const Match = ({ weekNumber }) => {
                         </div>
                     </div>
                 )
-
             })}
-
         </div >
     )
 }
