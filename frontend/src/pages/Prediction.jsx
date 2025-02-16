@@ -10,11 +10,11 @@ const Prediction = () => {
     const currentDate = new Date();
 
     const calendarItems = [
-        { weekNumber: 1, startDate: new Date("2025-01-05"), endDate: new Date("2025-01-19") },
-        { weekNumber: 2, startDate: new Date("2025-01-20"), endDate: new Date("2025-01-26") },
-        { weekNumber: 3, startDate: new Date("2025-01-27"), endDate: new Date("2025-02-02") },
-        { weekNumber: 4, startDate: new Date("2025-02-03"), endDate: new Date("2025-02-09") },
-        { weekNumber: 5, startDate: new Date("2025-02-10"), endDate: new Date("2025-02-16") },
+        { weekNumber: 1, startDate: new Date("2025-01-05"), endDate: new Date("2025-01-20") },
+        { weekNumber: 2, startDate: new Date("2025-01-20"), endDate: new Date("2025-01-27") },
+        { weekNumber: 3, startDate: new Date("2025-01-27"), endDate: new Date("2025-02-03") },
+        { weekNumber: 4, startDate: new Date("2025-02-03"), endDate: new Date("2025-02-10") },
+        { weekNumber: 5, startDate: new Date("2025-02-10"), endDate: new Date("2025-02-17") },
         { weekNumber: 6, startDate: new Date("2025-02-17"), endDate: new Date("2025-02-23") },
     ];
 
@@ -28,8 +28,6 @@ const Prediction = () => {
         if (currentDate >= startDate && currentDate <= endDate) return "경기중";
         if (currentDate > endDate) return "경기종료";
     }
-
-
 
     const handleWeekClick = (weekNumber, status) => {
         if (status !== "예정") {

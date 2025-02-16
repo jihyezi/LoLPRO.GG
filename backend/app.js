@@ -4,7 +4,7 @@ const rankingsRouter = require("./routes/rankingRoutes");
 const matchesRouter = require("./routes/matchRoutes");
 const predictionRouter = require("./routes/predictionRoutes");
 // const scrapeAndSave = require("./scraper/scraper");
-// const scrapeAndSave = require("./scraper/pastMatchScraper");
+const scrapeAndSave = require("./scraper/pastMatchScraper");
 const predictionScape = require("./scraper/pradictionScraper");
 
 const app = express();
@@ -25,6 +25,7 @@ app.get("/", (req, res) => {
 app.get("/scrape", async (req, res) => {
   try {
     await predictionScape();
+    await scrapeAndSave();
     res.send("Data scraped and saved successfully!");
   } catch (error) {
     res.status(500).send("Error during scraping: " + error.message);
