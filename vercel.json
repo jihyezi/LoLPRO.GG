@@ -4,32 +4,12 @@
       {
         "src": "frontend/package.json",
         "use": "@vercel/static"
-      },
-      {
-        "src": "backend/package.json",
-        "use": "@vercel/node"
       }
     ],
     "routes": [
       {
-        "src": "/api/rankings",
-        "dest": "/backend/api/rankings.js"
-      },
-      {
-        "src": "/api/matches",
-        "dest": "/backend/api/matches.js"
-      },
-      {
-        "src": "/api/prediction",
-        "dest": "/backend/api/prediction.js"
-      },
-      {
-        "src": "/api/scrape",
-        "dest": "/backend/api/scrape.js"
-      },
-      {
         "src": "/(.*)",
-        "dest": "/frontend/index.js"
+        "dest": "/frontend/build/$1"
       }
     ]
   }
