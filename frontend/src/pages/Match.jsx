@@ -28,7 +28,7 @@ const Match = () => {
     triggerOnce: false,
   });
 
-  const [currentDate, setCurrentDate] = useState(new Date(2025, 0));
+  const [currentDate, setCurrentDate] = useState(new Date(2025, 1));
   const [selectedTeam, setSelectedTeam] = useState("전체");
   const [activeEvent, setActiveEvent] = useState(null);
   const teams = [
