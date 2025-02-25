@@ -1,17 +1,17 @@
 const express = require("express");
 const cors = require("cors");
+
 const rankingsRouter = require("./routes/rankingRoutes");
 const matchesRouter = require("./routes/matchRoutes");
 const predictionRouter = require("./routes/predictionRoutes");
-// const scrapeAndSave = require("./scraper/scraper");
+
 const scrapeAndSave = require("./scraper/pastMatchScraper");
 const predictionScape = require("./scraper/pradictionScraper");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-
 app.use(express.json());
 
 app.use("/api/rankings", rankingsRouter);
@@ -24,14 +24,17 @@ app.get("/", (req, res) => {
 
 app.get("/scrape", async (req, res) => {
   try {
-    await predictionScape();
-    await scrapeAndSave();
-    res.send("Data scraped and saved successfully!");
+    res.send("Scraping started...");
+    setTimeout(async () => {
+      await predictionScape();
+      await scrapeAndSave();
+      console.log("Data scraped and saved successfully!");
+    }, 1000);
   } catch (error) {
-    res.status(500).send("Error during scraping: " + error.message);
+    console.error("Scraping error:", error);
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server is running on port ${PORT}`);
 });
