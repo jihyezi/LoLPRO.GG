@@ -1,12 +1,12 @@
 require("dotenv").config();
 const admin = require("firebase-admin");
 
-let serviceAccount;
-if (process.env.FIREBASE_CONFIG) {
-  serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG);
-} else {
-  serviceAccount = require("./lolprogg-ed60f-firebase-adminsdk-1cerz-46615cd137.json");
-}
+// let serviceAccount;
+// if (process.env.FIREBASE_CONFIG) {
+//   serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG);
+// } else {
+//   serviceAccount = require("./lolprogg-ed60f-firebase-adminsdk-1cerz-46615cd137.json");
+// }
 
 const firebaseConfig = {
   type: "service_account",
