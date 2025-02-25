@@ -27,5 +27,3 @@ yarn-debug.log*
 yarn-error.log*
 
 /backend/config/lolprogg-ed60f-firebase-adminsdk-1cerz-46615cd137.json
-
-/frontend/build
