@@ -73,6 +73,13 @@ const Home = () => {
       setMatches([]);
       const year = currentDate.getFullYear();
       const data = await fetchMatches(year);
+
+      data.sort((a, b) => {
+        const matchIdA = parseInt(a.matchLink.match(/(\d+)/)[0], 10);
+        const matchIdB = parseInt(b.matchLink.match(/(\d+)/)[0], 10);
+        return matchIdA - matchIdB;
+      });
+
       setMatches(data);
     };
     getMatchData();
@@ -87,7 +94,19 @@ const Home = () => {
     (match) => match.matchDate === currentDate.toISOString().split("T")[0]
   );
 
+  const getMatchTime = (index) => {
+    const matchDate = new Date(todayMatches[index].matchDate);
+    const day = matchDate.getDay();
+
+    if (day === 0 || day === 6) {
+      return index === 0 ? "15:00" : "17:30";
+    } else {
+      return index === 0 ? "17:00" : "19:30";
+    }
+  };
+
   const handleNextMatch = () => {
+    console.log(todayMatches);
     setDirection(1);
     setCurrentMatch((prev) => (prev + 1) % todayMatches.length);
   };
@@ -223,7 +242,9 @@ const Home = () => {
                           </div>
                           <div className={styles.centerContainer}>
                             <div className={styles.timeBox}>
-                              <span className={styles.timeText}>17:00</span>
+                              <span className={styles.timeText}>
+                                {getMatchTime(currentMatch)}
+                              </span>
                             </div>
                             <span className={styles.vsText}>VS</span>
                           </div>

@@ -92,6 +92,7 @@ const scrapeAndSave = async () => {
               matchWeek: item.matchWeek,
               matchPatch: item.matchPatch,
               matchDate: item.matchDate,
+              createdAt: new Date(),
             },
             { merge: true }
           );

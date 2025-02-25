@@ -23,6 +23,7 @@ const Ranking = () => {
     name: "2025 LCK 스프링",
   });
   const [rankings, setRankings] = useState([]);
+  const [animationKey, setAnimationKey] = useState(0);
 
   const seasons = [
     { year: 2015, season: "spring", name: "2015 LCK 스프링" },
@@ -76,6 +77,7 @@ const Ranking = () => {
   const handleSeasonSelect = (season) => {
     setSelectedSeason(season);
     setDropdownOpen(false);
+    setAnimationKey((prev) => prev + 1);
   };
 
   const dropdownRef = useRef(null);
@@ -143,6 +145,7 @@ const Ranking = () => {
           )}
           <div className={styles.rankContainer}>
             <motion.div
+              key={animationKey}
               className={styles.rankBox}
               ref={rankRef}
               initial={{ opacity: 0, y: 50 }}
