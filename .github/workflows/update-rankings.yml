@@ -1,0 +1,41 @@
+name: Update LCK Rankings
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  update-rankings:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Set up Firebase credentials
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: |
+          echo $FIREBASE_CONFIG > backend/config/lolprogg-ed60f-firebase-adminsdk-1cerz-46615cd137.json
+
+      - name: Run server and scrape
+        run: |
+          cd backend
+          node app.js &
+          SERVER_PID=$!
+
+          sleep 10
+          curl -X GET http://localhost:3000/scrape
+
+          kill $SERVER_PID

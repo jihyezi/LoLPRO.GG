@@ -1,0 +1,148 @@
+.predictionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: #151515;
+}
+
+.titleContainer {
+    width: 100%;
+    height: 370px;
+    margin-top: 60px;
+    background-image: url("../assets/Prediction/prediction_jinx.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cupInfo {
+    font-size: 36px;
+    font-family: "BlackOps";
+    color: #8E69F4;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    margin-top: 230px;
+    margin-bottom: 2px;
+}
+
+.title {
+    font-size: 60px;
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.calendarContainer {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    scrollbar-width: none;
+    justify-content: center;
+}
+
+.calendarWrapper {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.calendarList {
+    position: relative;
+    z-index: 1000;
+    overflow: visible;
+    width: 100%;
+    touch-action: pan-y;
+    user-select: none;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.weekItem1 {
+    position: relative;
+    border: solid 2px #8E69F4;
+    border-radius: 10px;
+    padding: 10px 30px 8px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #31313C;
+}
+
+.weekItem1[data-selected="false"] {
+    border: solid 2px #31313C;
+}
+
+.weekItem1[game-status="true"]::after {
+    position: absolute;
+    top: -12px;
+    left: 54px;
+    background-color: #8E69F4;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 18px;
+    padding: 0 5px 0 6px;
+    color: #ffffff;
+    content: "NOW";
+    transform: translateX(-50%);
+    border-radius: 9px;
+}
+
+.itemTitle {
+    color: #8E8E8E;
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.itemTitle[game-status="true"] {
+    color: #8e69f4;
+}
+
+.calenderBox {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 2px;
+    margin-top: 1px;
+}
+
+.weekNumber {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.weekNumber[data-selected="false"] {
+    color: #8E8E8E;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.weekText {
+    color: hsla(0, 0%, 100%, .3);
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.weekItem2 {
+    position: relative;
+    border: solid 2px #31313C;
+    border-radius: 10px;
+    padding: 10px 30px 8px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #31313C;
+}
+
+.gameContainer {
+    width: 100%;
+    height: 900px;
+    margin-top: 100px;
+}
