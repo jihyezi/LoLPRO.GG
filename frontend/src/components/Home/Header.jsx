@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
 import styles from "./Header.module.css";
+import { useUser } from "context/UserContext";
 
+// images
 import logo from "assets/Home/logo.png";
 import profile from "assets/Home/profile.png";
 
@@ -11,11 +12,9 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const auth = getAuth();
-  const db = getFirestore();
   const [selectedMenu, setSelcetedMenu] = useState("홈");
-  const [user, setUser] = useState(null);
+  const { user, nickname } = useUser();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [nickname, setNickname] = useState("");
 
   const menuItems = [
     { name: "홈", href: "/" },
@@ -33,22 +32,6 @@ const Header = () => {
     }
   }, [location.pathname]);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
-      setUser(currentUser);
-      if (currentUser) {
-        const userDoc = doc(db, "users", currentUser.uid);
-        const userShapshot = await getDoc(userDoc);
-        if (userShapshot.exists()) {
-          setNickname(userShapshot.data().nickname);
-        } else {
-          console.log("사용자 데이터가 존재하지 않습니다.");
-        }
-      }
-    });
-    return () => unsubscribe();
-  }, [auth, db]);
-
   const handleLogin = () => {
     if (!user) {
       navigate("/login");
@@ -58,12 +41,10 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        setUser(null);
-        setDropdownOpen(false);
-        navigate("/login");
-      })
+    signOut(auth).then(() => {
+      setDropdownOpen(false);
+      navigate("/login");
+    })
       .catch((error) => {
         console.log("로그아웃 실패", error);
       });
@@ -103,12 +84,6 @@ const Header = () => {
         {dropdownOpen && user && (
           <div className={styles.dropdownMenu} onMouseLeave={closeDropdown}>
             <div className={styles.dropdownNickname}>{nickname}</div>
-            <div
-              className={styles.dropdownItem}
-              onClick={() => navigate("/profile")}
-            >
-              프로필
-            </div>
             <div className={styles.dropdownItem} onClick={handleLogout}>
               로그아웃
             </div>

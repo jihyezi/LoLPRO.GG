@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import app from "../firebase";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { motion } from "framer-motion";
@@ -34,15 +34,16 @@ const SignUp = () => {
 
     const handleGoogleLogin = async () => {
         try {
-            const result = await signInWithRedirect(auth, provider);
+            const result = await signInWithPopup(auth, provider);
             const user = result.user;
 
-            if (user) {
-                // 구글 로그인 성공 시 홈으로 이동
-                navigate('/');
-            } else {
-                alert("사용자 정보를 가져오지 못했습니다.");
-            }
+            await setDoc(doc(firestore, "users", user.uid), {
+                nickname: user.email.split("@")[0],
+                email: user.email,
+                createdAt: new Date(),
+            });
+
+            navigate('/');
         } catch (error) {
             alert("구글 로그인 실패. 다시 시도해주세요.")
         }
