@@ -29,11 +29,74 @@
 
 ## 1. 🖥️ 개발 환경
 
+**Environment**
+<br/>
+<img  src="https://img.shields.io/badge/VISUAL STUDIO CODE-29B6F6?style=for-the-badge&logo=visual studio&logoColor=white"/> <img  src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=GIT&logoColor=white"/> <img  src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=GITHUB&logoColor=white"/>
+
+**Config**
+<br/>
+<img  src="https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=NPM&logoColor=white"/>
+
+**Development**
+<br/>
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img  src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-black?style=for-the-badge&logo=react&logoColor=61DAFB"> <img src="https://img.shields.io/badge/react query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white"> <img  src="https://img.shields.io/badge/firebase-DD2C00?style=for-the-badge&logo=firebase&logoColor=white"> <img  src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+
+**Communication**
+<br/>
+<img src="https://img.shields.io/badge/NOTION-black?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/DISCORD-5865F2?style=for-the-badge&logo=discord&logoColor=white">
+
+**Deployment**
+<br/>
+<img src="https://img.shields.io/badge/cloudtype-000000?style=for-the-badge&logoColor=black">
 
 <br/><br/>
 
 ## 2. 🗂️ 프로젝트 구조
 
+```
+📦LoLPRO.GG
+ ┣ 📂backend
+ ┃ ┣ 📂config
+ ┃ ┃ ┣ 📜firebaseConfig.js
+ ┃ ┣ 📂controllers
+ ┃ ┣ 📂routes
+ ┃ ┣ 📂scraper
+ ┃ ┣ 📜.env
+ ┃ ┣ 📜app.js
+ ┃ ┣ 📜monitor.js
+ ┃ ┣ 📜package-lock.json
+ ┃ ┗ 📜package.json
+ ┣ 📂frontend
+ ┃ ┣ 📂public
+ ┃ ┣ 📂src
+ ┃ ┃ ┣ 📂api
+ ┃ ┃ ┣ 📂assets
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┣ 📂Home
+ ┃ ┃ ┃ ┣ 📂Prediction
+ ┃ ┃ ┃ ┣ 📂Ranking
+ ┃ ┃ ┃ ┗ 📂Schedule
+ ┃ ┃ ┣ 📂context
+ ┃ ┃ ┣ 📂fonts
+ ┃ ┃ ┣ 📂pages
+ ┃ ┃ ┣ 📜App.css
+ ┃ ┃ ┣ 📜App.js
+ ┃ ┃ ┣ 📜App.test.js
+ ┃ ┃ ┣ 📜firebase.js
+ ┃ ┃ ┣ 📜index.css
+ ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┣ 📜logo.svg
+ ┃ ┃ ┣ 📜reportWebVitals.js
+ ┃ ┃ ┗ 📜setupTests.js
+ ┃ ┣ 📜.env
+ ┃ ┣ 📜jsconfig.json
+ ┃ ┣ 📜package-lock.json
+ ┃ ┗ 📜package.json
+ ┣ 📜.gitignore
+ ┣ 📜package-lock.json
+ ┣ 📜pull_request_template.md
+ ┗ 📜README.md
+```
 
 <br/><br/>
 
@@ -81,9 +144,13 @@
 
 ### Schedule
 
+- **경기 목록 및 결과**: 날짜별 및 팀별 경기 리스트를 제공하며, 일정 클릭 시 경기 결과를 승패 여부에 따라 구분하여 표시합니다.
+<br/>
 
 ### Ranking
 
+- **리그별 순위 조회**: 리그별 순위 리스트를 제공하며, 특정 리그를 선택하면 해당 시즌의 순위를 확인할 수 있습니다.
+<br/>
 
 ### Prediction
 
