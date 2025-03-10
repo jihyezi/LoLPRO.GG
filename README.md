@@ -142,7 +142,7 @@
 ### Home
 
 <p align="center">
-<img width="100%" alt="홈" src="https://github.com/user-attachments/assets/9ca50583-bf60-4551-bf2d-daf28a9c55ba">
+<img width="100%" alt="홈" src="https://github.com/user-attachments/assets/d128be27-8c5b-42e2-acb5-cd8a21929228">
 </p>
 <br/>
 
@@ -151,7 +151,7 @@
 - **경기 목록 및 결과**: 날짜별 및 팀별 경기 리스트를 제공하며, 일정 클릭 시 경기 결과를 승패 여부에 따라 구분하여 표시합니다.
 <br/>
 <p align="center">
-<img width="100%" alt="일정" src="https://github.com/user-attachments/assets/253684bc-7421-43f4-a93e-89f51e7ba66e">
+<img width="100%" alt="일정" src="https://github.com/user-attachments/assets/055d44d0-bf62-44ee-b5a0-33f5cbdc3938">
 </p>
 <br/>
 
@@ -160,7 +160,7 @@
 - **리그별 순위 조회**: 리그별 순위 리스트를 제공하며, 특정 리그를 선택하면 해당 시즌의 순위를 확인할 수 있습니다.
 <br/>
 <p align="center">
-<img width="100%" alt="순위" src="https://github.com/user-attachments/assets/fa0c1f39-7e15-45e5-b612-70f05232ba5c">
+<img width="100%" alt="순위" src="https://github.com/user-attachments/assets/0ff1ae99-78a3-4024-bba2-96a231594164">
 </p>
 <br/>
 
